@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+  <link href="{%static 'css/portfolio.css' %}" rel="stylesheet">
+
+{% endblock %}
+
+{% block title %} Portfolio {% endblock %}
+
+{% block content %}
+
+<table>
+  <tr>
+      <th>Ticker</th>
+      <th>Invested</th>
+      <th>Current Price</th>
+  </tr>
+    {% for holding in holdings %}
+    <tr>
+        <td>{{holding.company.ticker_id}}</td>
+        <td>{{holding.price}}</td>
+        <td>$500</td>
+  </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

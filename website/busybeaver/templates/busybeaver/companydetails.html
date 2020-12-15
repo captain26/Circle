@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Company Details {% endblock %}
+
+{% block extra_css %}
+  <link href="{%static 'css/companydetails.css' %}" rel="stylesheet">
+
+{% endblock %}
+
+{% block content %}
+
+{% if company %}
+
+<p> {{ company.name }} </p> <a href = "/busybeaver/watchlist/?add_ticker={{company.ticker_id}}"> Add to watchlist </a>
+<p>
+    <ul>
+      <li> CEO = {{company.ceo}} </li>
+    <li> About: ....</li>
+</ul>
+</p>
+
+{% endif %}
+
+<div class="col-xl-8 col-lg-7">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
+                  <div class="dropdown no-arrow">
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                      <div class="dropdown-header">Dropdown Header:</div>
+                      <a class="dropdown-item" href="#">Action</a>
+                      <a class="dropdown-item" href="#">Another action</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                  </div>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                  <div class="chart-area">
+                    <canvas id="myAreaChart"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+  <!-- Page level plugins -->
+  <script src="{%static 'vendor/chart.js/Chart.min.js' %}"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="{%static 'js/demo/chart-area-demo.js' %}"></script>
+  <script src="{%static 'js/demo/chart-pie-demo.js' %}"></script>
+
+<div>
+  <table style="float: left; margin-right:5%">
+    <tr>
+      <td>Open</td>
+      <td> $$ </td>
+    </tr>
+    <tr>
+      <td>High</td>
+      <td> $$ </td>
+    </tr>
+    <tr>
+      <td> Low </td>
+      <td> $$ </td>
+    </tr>
+    <tr>
+      <td> 52-week high </td>
+      <td> $$ </td>
+    </tr>
+    <tr>
+      <td> 52-week high </td>
+      <td> $$ </td>
+    </tr>
+  </table>
+
+  <table>
+    <tr>
+      <td>Volume</td>
+      <td> $$ </td>
+    </tr>
+    <tr>
+      <td>Avg Volume</td>
+      <td> $$ </td>
+    </tr>
+    <tr>
+      <td> Mkt Cap </td>
+      <td> $$ </td>
+    </tr>
+    <tr>
+      <td> P/E Ratio </td>
+      <td> $$ </td>
+    </tr>
+    <tr>
+      <td> Dividend % </td>
+      <td> $$ </td>
+    </tr>
+  </table>
+</div>
+
+{% include 'busybeaver/post.html' %}
+
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Company List {% endblock %}
+
+{% block extra_css %}
+<link href="{%static 'css/companylist.css' %}" rel="stylesheet">
+<link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
+      
+
+{% endblock %}
+
+
+{% block content %}
+  <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+      
+  
+  <label for="search">Search Companies/Tickers: </label>
+  <input id="search" />
+  <div id="menu-container" style="position:absolute; width: 500px;"></div>
+  
+  <script>
+    var source_tickers = {{tickers|safe}}
+    
+    $(document).ready(function() {
+        /*
+        jQuery.ui.autocomplete.prototype._resizeMenu = function () {
+            var ul = this.menu.element;
+            ul.outerWidth(this.element.outerWidth());
+        }
+        */
+        $("input#search").autocomplete({
+            source: source_tickers,
+            select: function( event, ui ) { 
+                location.href = "/busybeaver/companydetails/" + ui.item.value;
+            }
+  //          appendTo: '#menu-container'
+        });
+    });
+  </script>
+
+
+{% if companies %}
+
+  {% for company_2 in companies %}
+
+  <ul>
+    <li> {{company_2.name}} <a href="/busybeaver/companydetails/{{company_2.ticker_id}}/" style="color:blue;"> {{company_2.ticker_id}} </a> </li> <br>
+  </ul>
+
+  {% endfor %}
+
+{% else %}
+
+{% endif %}
+
+{% endblock %}
