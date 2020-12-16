@@ -7,11 +7,17 @@ from django.views import generic
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect
 from django import forms
+from django.http import JsonResponse
 
 
 def index(request):
     return render(request, 'busybeaver/home.html')
 
+
+def home(request):
+     context = {'company_name': 'busybeaver','user1': 'vasu'}
+     return JsonResponse(context)
+    
 def learn(request):
     return render(request, 'busybeaver/learn.html')
 

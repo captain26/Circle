@@ -39,9 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'busybeaver.apps.BusybeaverConfig',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.BrokenLinkEmailsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -81,6 +85,9 @@ DATABASES = {
         'NAME': str(BASE_DIR / 'db.sqlite3'),
     }
 }
+CORS_ORIGIN_ALLOW_ALL = True
+
+
 
 
 # Password validation

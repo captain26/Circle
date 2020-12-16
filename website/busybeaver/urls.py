@@ -6,6 +6,7 @@ from django.conf.urls.static import static
 from . import views
 
 urlpatterns = [
+    path('home/', views.home, name='home'),
     path('', views.index, name='index'),
     path('feed/', views.universal_feed, name='feed'),
     path('feed/<str:ticker_id>/', views.universal_feed, name = 'ticker_feed'),

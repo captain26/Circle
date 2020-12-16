@@ -13,7 +13,6 @@
                 </div>
                 <div class="card-body">
                     <p class="mb-0" style="color:black;font-family:arial">
-
                     {{post.content|truncatechars:200}} <a href="/busybeaver/postdetails/{{post.slug}}" style="color:blue;">see more</a>
                   </p>
                   {% for tag in post.tag.all %}
@@ -37,8 +36,6 @@
                                 <span style="color:black;">{{ comment.body}} </span>
                             </div>
                   {% endfor %}
-
-
                   <form action="/busybeaver/postdetails/{{post.slug}}/ " method="post" style="margin-top: 1.3em;">
                       {{ comment_form.as_p }}
                       {% csrf_token %}

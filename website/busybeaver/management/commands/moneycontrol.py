@@ -58,7 +58,7 @@ def main():
     company_list_soup = main_soup.find("table", {"class": "pcq_tbl"})
     data = {}
     for company_td in company_list_soup.findAll("td"):
-        company_link = company_td.find("a")['href']
+        company_link = company_ td.find("a")['href']
         company_name = company_td.text
         if len(company_link) > 0:
             soup = get_html_from_url(company_link)
