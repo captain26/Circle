@@ -5,7 +5,7 @@ import Home from "./core/Home";
 import Notes from "./user/Notes";
 import Notification from "./user/Notification";
 import Profile from "./user/Profile";
-import Search from "./core/Search";
+import Search from "./user/Search";
 
 
 

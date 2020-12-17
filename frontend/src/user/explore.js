@@ -11,7 +11,7 @@ export default function Explore() {
 
   return (
     <div>
-     <Base title="Explore Page" description="This is explore Page">
+     <Base>
         <h1>this is the body of the explore Page</h1>
      </Base>
     </div>
