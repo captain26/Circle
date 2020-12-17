@@ -11,7 +11,7 @@ export default function Notification() {
 
   return (
     <div>
-     <Base title="Notication Page" description="This is Notification Page">
+     <Base>
         <h1>this is the body of the notification Page</h1>
      </Base>
     </div>

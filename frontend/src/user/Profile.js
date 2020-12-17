@@ -11,7 +11,7 @@ export default function Profile() {
 
   return (
     <div>
-     <Base title="Profile Page" description="This is Profile Page">
+     <Base>
         <h1>this is the body of the profile Page</h1>
      </Base>
     </div>

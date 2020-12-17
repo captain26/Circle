@@ -30,10 +30,13 @@ export default function Home() {
 
   return (
     <div>
-     <Base title="Home Page" description="This is Home Page">
-    
+     <Base>
      <center>
-     <h2 className="f text-left" style={{marginLeft:"0px"}}>Your Feed</h2>
+       <div class="card w-50 mb-5 mt-3">Search</div>
+       <div class="card w-75 mb-5">
+         POST
+       </div>
+     <h3 className="text-left w-75" style={{fontWeight:"bold", marginBottom:"20px"}}>Your Feed</h3>
      <Card class="card w-75 mb-5">
        <FeedContent
        avatarImage="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50"
