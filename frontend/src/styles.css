@@ -1,0 +1,333 @@
+/****************************************** common css **************************************/
+
+.body{
+    font-family: 'Montserrat', sans-serif;
+
+}
+
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.nav-link{
+    margin-left: 20px;
+    font-weight: 600;
+}
+
+.logout{
+    background-color:white ; 
+    color: #08d9d6; 
+    font-weight: 600;
+}
+.card{
+    box-shadow: 10px 22px 90px -26px rgba(0,0,0,0.66);}
+.manage{
+    text-align: center; 
+    padding-top: 20px; 
+    color: white; 
+    font-size: 2.5rem; 
+    font-weight: 600;
+}
+
+.link{
+    text-decoration: none;
+    color: white;
+    font-weight: 600; 
+    font-size: 1.3rem;
+    letter-spacing: 1.2px;
+}
+
+a , span, button,  p, h3, label, h6, h5,h2{
+    font-family:"Montserrat";
+}
+
+.manage-list :hover{
+    text-decoration: none;
+    color: #efefef;
+}
+
+.add-btn{
+    position: absolute; 
+    right: 19px; 
+    top:17px; 
+    font-weight: 500; 
+    background-color: white;
+}
+
+.manage-list{
+    margin-bottom: 25px; 
+    padding-left: 25px;
+}
+
+.left-panel{
+
+    background-color:#4d52b5; 
+    min-height: 100vh;
+    
+}
+
+.left-panel-video{
+    margin-right: 50px; 
+    background-color: #4d52b5; 
+    height: 100vh
+}
+
+.nav1{
+    background-color: #08d9d6; 
+    margin: 15px;
+}
+
+.main-div{
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+    padding-top: 10px;
+}   
+
+/* For left pane active link */
+
+.active1{
+    background-color: white;
+    margin-right: 20px;
+    margin-left: 10px;
+    padding-left: 15px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    border-radius: 20px;
+}
+.active{
+    color: #08d9d6;
+}
+
+/* Left pane active link end */
+
+.selectall{
+    font-weight: 700; 
+    font-size: large; 
+    padding-top: 10px;
+}
+
+.check{
+    margin-right: 30px;
+}
+
+.right-heading{
+    font-weight: 700;
+}
+
+.delete{
+    position: absolute; 
+    right: 30px; 
+    top: 82.5px;
+}
+
+@media(max-width: 991px){
+    
+    .left-panel{
+        margin-right: 0px; 
+        height: auto;
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+    }
+
+    .left-panel-video{
+        margin-right: 0px; 
+        height: auto;
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+    }
+
+    .main-div{
+        margin-top: 0px;
+        padding-top: 0px;
+    }
+
+    .nav1{
+        margin-bottom: 0px;
+    }
+
+    .logout{
+        margin-left: 10px;
+        margin-top: 5px;
+    }
+
+}
+
+/************************************ Batch Users only CSS *********************************************/
+
+.user{
+    color: #08d9d6; 
+    font-weight: 600; 
+    font-size: 1.1rem;
+}
+
+.email{
+    font-weight: 600; 
+    font-size: 1.1rem;
+}
+
+.float{
+    float: right;
+}
+
+@media(max-width: 1025px){
+    .nav-link{
+        margin-left: 10px;
+    }
+}
+
+@media(max-width: 623px){
+    .user{
+        color: #08d9d6; 
+        font-weight: 500; 
+        font-size: 0.9rem;
+    }
+    
+    .email{
+        font-weight: 500; 
+        font-size: 0.9rem;
+    }
+
+}    
+
+@media(max-width: 506px){
+    .user{
+        color: #08d9d6; 
+        font-weight: 500; 
+        font-size: 0.9rem;
+    }
+    
+    .email{
+        font-weight: 500; 
+        font-size: 0.9rem;
+        padding-left: 42px;
+    }
+
+    .float{
+        float: none;
+    }
+
+    .selectall{
+        font-size: 0.9rem;
+    }
+
+    .delete{
+        top: 82px;
+    }
+
+    .nav1{
+        margin: 15px;
+        margin-bottom: 0px;
+    }
+
+    .main-div{
+        margin-top: 0px;
+        padding-left: 30px;
+        padding-right: 30px;
+        padding-bottom: 30px;
+    }
+
+}  
+
+@media(max-width: 396px){
+    
+    .add-btn{ 
+        top:12px; 
+    }
+    
+    .user{
+        color: #08d9d6; 
+        font-weight: 500; 
+        font-size: 0.9rem;
+    }
+    
+    .email{
+        font-weight: 500; 
+        font-size: 0.9rem;
+        padding-left: 42px;
+    }
+
+    .float{
+        float: none;
+    }
+
+    .selectall{
+        font-size: 0.9rem;
+        font-weight: 600;
+    }
+
+    .check{
+        margin-right: 5px;
+    }
+
+    .right-heading{
+        font-size: 1.2rem;
+    }
+
+    .delete{
+        top: 72px;
+    }
+}  
+
+
+/*************************************** Batch Details only CSS **********************************/
+
+
+
+/*************************************** Batch Videos only CSS **********************************/
+
+.select-video{
+    margin-left: 30px; 
+    font-weight: 700; 
+    font-size: 1.2rem;
+}
+
+.videos-link{
+    margin-left: 30px; 
+    font-weight: 700; 
+    font-size: 1.1rem;
+    color: #08d9d6;
+}
+
+.add-vdo{
+    background-color: #08d9d6; 
+    color: white;
+    font-weight: 600 ;
+    position: absolute; 
+    right: 25px; 
+    top: 13px;
+}
+
+.add-vdo-item{
+    border-style: solid; 
+    border-color: #efefef; 
+    padding: 5px; 
+    border-top: none;
+}
+
+.vdo-heading{
+    font-weight: 700; 
+    margin-top: 10px; 
+    margin-left: 10px; 
+    font-size: 1.1rem;
+}
+
+@media(max-width: 386px){
+    .select-video{
+        font-size: 1rem;
+        margin-left: 10px;
+    }
+
+    .videos-link{
+        margin-left: 10px; 
+        font-weight: 700; 
+        font-size: 0.9rem;
+    }
+
+    .add-vdo{
+        top: 11px;
+    }
+}
