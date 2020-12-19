@@ -67,3 +67,24 @@ a , span, button,  p, h3, label, h6, h5,h2{
     background-color:#4d52b5; 
     min-height: 100vh;
 }
+
+.nav-tabs > li > a{
+  color: black;
+}
+
+textarea {
+  border: none;
+  overflow: auto;
+  font-size: 25px;
+  outline: none;
+  width: 100%;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+
+  resize: none; /*remove the resize handle on the bottom right*/
+}
+
+::placeholder {
+  font-size: 25px;
+}
