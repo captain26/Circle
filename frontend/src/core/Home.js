@@ -4,36 +4,39 @@ import Base from "./Base.js"
 import { Card } from "./Card.js";
 import { FeedContent } from "./FeedContent.js";
 
+
+
+
 export default function Home() {
+  const [feeds, setData] = useState([]);
+  const [error, setError] = useState(false);
 
 
+  const getData=()=>{
+    fetch('http://127.0.0.1:8000/busybeaver/api/feed/'
+    ,{method:"GET"})
+    .then(function(response){
+      return response.json();
+    })
+      .then(function(json) {
+      console.log(json);
+      setData(json);
+    });
+    }
 
-  // const [data, setData] = useState([]);
-
-
-  // const getData=()=>{
-  //   fetch('http://127.0.0.1:8000/busybeaver/home/'
-  //   ,{method:"GET"})
-  //     .then(function(response){
-  //       console.log(response)
-  //       return response.json();
-  //     })
-  //     .then(function(myJson) {
-  //       console.log(myJson);
-  //       setData(myJson);
-  //     });
-  //   }
-
-  //   useEffect(() => {
-  //     getData();
-  //   }, []);
+    useEffect(() => {
+      getData();
+    }, []);
 
   return (
     <div>
      <Base>
      <center>
-       <div class="card w-50 mb-5 mt-3">Search</div>
-       <div class="card w-75 mb-5">
+     <Card class="card w-50 p-2 my-2" borderRadius="30px">
+     <input placeholder="  Search" style={{border: "none", outline:"0"}} type="text" id="search"></input>
+     </Card>  
+    
+     <div class="card w-75 mb-5 my-5" style={{borderRadius:"15px"}}>
             <div className="row py-4" style={{paddingRight:"10px", paddingLeft:"10px"}}>
               <div className="col-lg-3">
                 <img className="rounded-circle" style={{width: "50%"}} src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50" alt="profile"/>
@@ -47,27 +50,22 @@ export default function Home() {
             </div>
        </div>
      <h3 className="text-left w-75" style={{fontWeight:"bold", marginBottom:"20px"}}>Your Feed</h3>
-     <Card class="card w-75 mb-5">
+    <div>
+    {feeds.map((feed,index) => {
+       return (
+        <Card key={index} class="card w-75 mb-5">
        <FeedContent
        avatarImage="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50"
-       cardTitle='Test Card'
-       cardDescription='Just of Testing'
-        cardText="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, " />
-     </Card>
-     <Card class="card w-75 mb-5">
-       <FeedContent
-       avatarImage="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50"
-       cardTitle='Test Card'
-       cardDescription='Just of Testing'
-        cardText="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, " />
-     </Card>
-     <Card class="card w-75 mb-5">
-       <FeedContent
-       avatarImage="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50"
-       cardTitle='Test Card'
-       cardDescription='Just of Testing'
-        cardText="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, " />
-     </Card>
+       cardTitle={feed.title}
+       cardDescription={feed.key_insight_1}
+       cardText= {feed.content} 
+         
+       />
+        </Card>
+     
+       );
+     })}
+    </div>
      
      </center>
     

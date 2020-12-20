@@ -10,7 +10,7 @@ const Base = ({
 }) =>{
     return (
 <div style={{backgroundColor:"#e1e1e1"}}>
-  <div class="sidebar">
+  <div className="sidebar">
       <a href="/"><Link to="/">Home</Link></a>
       <a href="/explore"><Link to="/explore" >Explore</Link></a>
       <a href="/search"><Link  to="/search">Search</Link></a>
@@ -22,7 +22,7 @@ const Base = ({
       <div className="text-center col-lg-10">
             <div className={className}>{children}</div>
       </div>
-      <div className="right-panel col-lg-2">
+      <div className="right-panel col-lg-2 ">
         <h4 style={{color:"white"}}>Watchlist</h4>
       </div>
   </div>
