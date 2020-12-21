@@ -8,6 +8,24 @@ from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect
 from django import forms
 from django.http import JsonResponse
+from rest_framework.response import Response 
+from . serializers import PostSerializer, CommentSerializer, CompanySerializer, TickerSerializer
+from rest_framework.decorators import api_view
+from rest_framework import status
+
+
+
+@api_view(['GET'])
+def api_companies(request):
+    companies = Company.objects.all()
+    serializer = CompanySerializer(companies, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def api_tickers(request):
+    tickers = Ticker.objects.all()
+    serializer = TickerSerializer(tickers, many=True)
+    return Response(serializer.data)
 
 
 def index(request):
@@ -38,6 +56,13 @@ def universal_feed(request, ticker_id = None):
     comment_form = CommentForm()
     context = {'posts_list': get_posts_by_ticker(ticker_id),'user1': thisuser, 'comment_form': comment_form}
     return render(request, 'busybeaver/feed.html', context)
+
+@api_view(['GET'])
+def api_universal_feed(request, ticker_id = None):
+    data = get_posts_by_ticker(ticker_id)
+    serializer = PostSerializer(data, many=True)
+    return Response(serializer.data)
+
 
 def tags_as_string(post):
     return ' | '.join([x.ticker_id for x in post.tag.all()])
@@ -145,6 +170,26 @@ def post_detail(request, slug):
                                            'comments': comments,
                                            'new_comment': new_comment,
                                            'comment_form': comment_form})
+@api_view(['GET','POST'])
+def api_post_detail(request, slug):
+    post = get_object_or_404(Post, slug=slug)
+    if request.method == 'POST':
+        serializer = CommentSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.validated_data['post'] = post
+            #disable authentication, always save as the first user TODO
+            for thisuser in UserProfile.objects.all():
+                serializer.validated_data['author'] = thisuser
+                break
+            serializer.save()
+            return Response(status=status.HTTP_201_CREATED)
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'GET':
+        data = post
+        serializer = PostSerializer(data)
+        return Response(serializer.data)
+
+
 
 def content_library(request):
     content_list=[]
