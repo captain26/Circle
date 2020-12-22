@@ -27,6 +27,10 @@ div.content {
     text-align: left;
 }
 
+li.active {
+  background-color: red;
+}
+
 @media screen and (max-width: 991px) {
     .card-content{
         text-align: center;
