@@ -2,38 +2,70 @@ import React, {useEffect, useState} from "react"
 import Base from "./Base.js"
 // import "../styles.css"; 
 import { Card } from "./Card.js";
+import { CommentField } from "./Postcomment.js";
 import { FeedContent } from "./FeedContent.js";
+import {Comments} from "./getcomment";
 
-
-
+const _ = require("lodash");
 
 export default function Home() {
   const [feeds, setData] = useState([]);
-  const [error, setError] = useState(false);
 
+
+  // addComment(comment).then(data => {
+  //   if (error) {
+  //     setError(true);
+  //   } else {
+  //     setComment("");
+  //     console.log(comment); 
+  //   }
+  // });
+
+  
+    
+  // const onSubmit = title => {
+  //   // event.preventDefault();
+  //   console.log(title);
+  //   addComment(comment,title)
+  //     .then(data => {
+  //       if (error) {
+          
+  //       } else {
+  //         console.log(data);
+  //         setComment("");
+  //       }
+  //       return 0;
+  //     })
+  //     .catch(console.log("Error in signup"));
+  // };
+
+  
 
   const getData=()=>{
     fetch('http://127.0.0.1:8000/busybeaver/api/feed/'
     ,{method:"GET"})
     .then(function(response){
+      // console.log(response.json());
       return response.json();
     })
       .then(function(json) {
       console.log(json);
-      setData(json);
+      setData(json);  
     });
     }
+
+    
 
     useEffect(() => {
       getData();
     }, []);
-
+    
   return (
     <div>
      <Base>
      <center>
      <Card class="card w-50 p-2 my-2" borderRadius="30px">
-     <input placeholder="  Search" style={{border: "none", outline:"0"}} type="text" id="search"></input>
+     <input placeholder="Search" style={{border: "none", outline:"0"}} type="text" id="search"></input>
      </Card>  
     
      <div class="card w-75 mb-5 my-5" style={{borderRadius:"15px"}}>
@@ -52,6 +84,9 @@ export default function Home() {
      <h3 className="text-left w-75" style={{fontWeight:"bold", marginBottom:"20px"}}>Your Feed</h3>
     <div>
     {feeds.map((feed,index) => {
+      var title = feed.title;
+      title = title.replace(/\s+/g, '-');
+     
        return (
         <Card key={index} class="card w-75 mb-5">
        <FeedContent
@@ -61,6 +96,9 @@ export default function Home() {
        cardText= {feed.content} 
          
        />
+       <hr width="90%" size="1" textAlign="center" style={{margin:"auto",marginBottom:"20px"}}/>
+        <Comments title={title}/>
+       <CommentField title={title}/>
         </Card>
      
        );

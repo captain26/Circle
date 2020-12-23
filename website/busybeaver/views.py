@@ -12,6 +12,7 @@ from rest_framework.response import Response
 from . serializers import PostSerializer, CommentSerializer, CompanySerializer, TickerSerializer
 from rest_framework.decorators import api_view
 from rest_framework import status
+from django.http import Http404
 
 
 
@@ -189,7 +190,27 @@ def api_post_detail(request, slug):
         serializer = PostSerializer(data)
         return Response(serializer.data)
 
-
+@api_view(['GET','POST'])
+def api_comments(request, slug):
+    try:
+        post = get_object_or_404(Post, slug=slug)
+    except Http404:
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+    if request.method == 'POST':
+        serializer = CommentSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.validated_data['post'] = post
+            #disable authentication, always save as the first user TODO
+            for thisuser in UserProfile.objects.all():
+                serializer.validated_data['author'] = thisuser
+                break
+            serializer.save()
+            return Response(status=status.HTTP_201_CREATED)
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'GET':
+        data = post.comments
+        serializer = CommentSerializer(data, many=True)
+        return Response(serializer.data)
 
 def content_library(request):
     content_list=[]
