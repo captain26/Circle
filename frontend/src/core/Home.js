@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react"
 import Base from "./Base.js"
 // import "../styles.css"; 
 import { Card } from "./Card.js";
-import { CommentField } from "./Postcomment.js";
 import { FeedContent } from "./FeedContent.js";
 import {Comments} from "./getcomment";
 
@@ -98,7 +97,6 @@ export default function Home() {
        />
        <hr width="90%" size="1" textAlign="center" style={{margin:"auto",marginBottom:"20px"}}/>
         <Comments title={title}/>
-       <CommentField title={title}/>
         </Card>
      
        );
