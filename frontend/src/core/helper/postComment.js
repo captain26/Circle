@@ -1,3 +1,5 @@
+
+
 export const addComment = (comment,title) => {
     console.log(comment);
     console.log(title);
@@ -15,3 +17,16 @@ export const addComment = (comment,title) => {
       .catch(err => console.log(err));
   };
   
+
+  // export const getComment = (titles) => {
+  //     return ( fetch('http://127.0.0.1:8000/busybeaver/api/comments/${title}/'
+  //     ,{method:"GET"})
+  //     .then(function(response){
+  //       return response.json();
+  //     })
+  //       .then(function(json) {
+  //       console.log(json);
+  //       setData(json);
+  //     })
+  //     );
+  // }

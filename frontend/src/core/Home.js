@@ -4,7 +4,7 @@ import Base from "./Base.js"
 import { Card } from "./Card.js";
 import { CommentField } from "./Postcomment.js";
 import { FeedContent } from "./FeedContent.js";
-
+import {Comments} from "./getcomment";
 
 const _ = require("lodash");
 
@@ -45,13 +45,16 @@ export default function Home() {
     fetch('http://127.0.0.1:8000/busybeaver/api/feed/'
     ,{method:"GET"})
     .then(function(response){
+      // console.log(response.json());
       return response.json();
     })
       .then(function(json) {
       console.log(json);
-      setData(json);
+      setData(json);  
     });
     }
+
+    
 
     useEffect(() => {
       getData();
@@ -94,29 +97,7 @@ export default function Home() {
          
        />
        <hr width="90%" size="1" textAlign="center" style={{margin:"auto",marginBottom:"20px"}}/>
-       <div className="w-50 row ml-2">
-          <div className="col-lg-2 col-md-4">
-            <img className="rounded-circle" style={{width:"40px"}} src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50"/>
-          </div>
-          <div className="col-lg-6 col-md-8">
-                <Card class="bg-light text-left p-2 mb-2">
-                    <p style={{fontSize:"15px",fontWeight:'bold',marginBottom:"2px"}}>Vasu Bansal</p>
-                    <p style={{fontSize:"12px",marginBottom:"2px"}}>THis is good</p>
-                </Card>
-          </div>
-       
-       </div>
-       <div className="w-50 row ml-2">
-          <div className="col-lg-2 col-md-4">
-            <img className="rounded-circle" style={{width:"40px"}} src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50"/>
-          </div>
-          <div className="col-lg-6 col-md-8">
-                <Card class="bg-light text-left p-2 mb-2">
-                    <p style={{fontSize:"15px",fontWeight:'bold',marginBottom:"2px"}}>Vasu Bansal</p>
-                    <p style={{fontSize:"12px",marginBottom:"2px"}}>THis is good</p>
-                </Card>
-          </div>
-       </div>
+        <Comments title={title}/>
        <CommentField title={title}/>
         </Card>
      
