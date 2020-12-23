@@ -2,15 +2,44 @@ import React, {useEffect, useState} from "react"
 import Base from "./Base.js"
 // import "../styles.css"; 
 import { Card } from "./Card.js";
+import { CommentField } from "./Postcomment.js";
 import { FeedContent } from "./FeedContent.js";
 
 
-
+const _ = require("lodash");
 
 export default function Home() {
   const [feeds, setData] = useState([]);
-  const [error, setError] = useState(false);
 
+
+  // addComment(comment).then(data => {
+  //   if (error) {
+  //     setError(true);
+  //   } else {
+  //     setComment("");
+  //     console.log(comment); 
+  //   }
+  // });
+
+  
+    
+  // const onSubmit = title => {
+  //   // event.preventDefault();
+  //   console.log(title);
+  //   addComment(comment,title)
+  //     .then(data => {
+  //       if (error) {
+          
+  //       } else {
+  //         console.log(data);
+  //         setComment("");
+  //       }
+  //       return 0;
+  //     })
+  //     .catch(console.log("Error in signup"));
+  // };
+
+  
 
   const getData=()=>{
     fetch('http://127.0.0.1:8000/busybeaver/api/feed/'
@@ -27,13 +56,13 @@ export default function Home() {
     useEffect(() => {
       getData();
     }, []);
-
+    
   return (
     <div>
      <Base>
      <center>
      <Card class="card w-50 p-2 my-2" borderRadius="30px">
-     <input placeholder="  Search" style={{border: "none", outline:"0"}} type="text" id="search"></input>
+     <input placeholder="Search" style={{border: "none", outline:"0"}} type="text" id="search"></input>
      </Card>  
     
      <div class="card w-75 mb-5 my-5" style={{borderRadius:"15px"}}>
@@ -52,6 +81,9 @@ export default function Home() {
      <h3 className="text-left w-75" style={{fontWeight:"bold", marginBottom:"20px"}}>Your Feed</h3>
     <div>
     {feeds.map((feed,index) => {
+      var title = feed.title;
+      title = title.replace(/\s+/g, '-');
+     
        return (
         <Card key={index} class="card w-75 mb-5">
        <FeedContent
@@ -61,6 +93,31 @@ export default function Home() {
        cardText= {feed.content} 
          
        />
+       <hr width="90%" size="1" textAlign="center" style={{margin:"auto",marginBottom:"20px"}}/>
+       <div className="w-50 row ml-2">
+          <div className="col-lg-2 col-md-4">
+            <img className="rounded-circle" style={{width:"40px"}} src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50"/>
+          </div>
+          <div className="col-lg-6 col-md-8">
+                <Card class="bg-light text-left p-2 mb-2">
+                    <p style={{fontSize:"15px",fontWeight:'bold',marginBottom:"2px"}}>Vasu Bansal</p>
+                    <p style={{fontSize:"12px",marginBottom:"2px"}}>THis is good</p>
+                </Card>
+          </div>
+       
+       </div>
+       <div className="w-50 row ml-2">
+          <div className="col-lg-2 col-md-4">
+            <img className="rounded-circle" style={{width:"40px"}} src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50"/>
+          </div>
+          <div className="col-lg-6 col-md-8">
+                <Card class="bg-light text-left p-2 mb-2">
+                    <p style={{fontSize:"15px",fontWeight:'bold',marginBottom:"2px"}}>Vasu Bansal</p>
+                    <p style={{fontSize:"12px",marginBottom:"2px"}}>THis is good</p>
+                </Card>
+          </div>
+       </div>
+       <CommentField title={title}/>
         </Card>
      
        );
