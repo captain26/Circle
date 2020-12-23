@@ -2,19 +2,23 @@ import React, { useState } from "react";
 
 import { addComment } from "./helper/postComment";
 
-export const CommentField = (prop) => {
+export const CommentField = ({
+  title,
+  setReload = f => f,
+  reload = undefined
+}) => {
   const [comment, setComment] = useState("");
   const [error, setError] = useState(false);
 
   const onSubmit = (title) => {
     // event.preventDefault();
-    console.log(title);
     addComment(comment, title)
       .then((data) => {
         if (error) {
         } else {
           console.log(data);
           setComment("");
+          setReload(!reload);
         }
         return 0;
       })
@@ -33,14 +37,13 @@ export const CommentField = (prop) => {
         type="text"
         onChange={handleChange}
         value={comment}
-        placeholder="write a comment...."
+        placeholder="Write a comment...."
       />
       <button
         className="fa fa-paper-plane fa-lg sendicon"
 
         onClick={() => {
-          console.log(prop.title);
-          onSubmit(prop.title);
+          onSubmit(title);
         }}
       ></button>
     </div>
