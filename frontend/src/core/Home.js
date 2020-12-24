@@ -42,7 +42,7 @@ export default function Home() {
   
 
   const getData=()=>{
-    fetch(`${API}/busybeaver/api/feed/`
+    fetch(`${API}/api/feed/`
     ,{method:"GET"})
     .then(function(response){
       // console.log(response.json());
