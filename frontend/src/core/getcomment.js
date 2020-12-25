@@ -1,14 +1,14 @@
 import React ,{useState,useEffect} from "react";
 import { Card } from "./Card";
 import { CommentField } from "./Postcomment.js";
-
+import {API} from "../backend"
 
 export const Comments = (prop) => {
     const [comments, setComments] = useState([]);
     const [reload, setReload] = useState(false);
-
+      // Above two feeds having an issue so that hardcode title is written 
     const getComments=()=>{
-        fetch(`http://127.0.0.1:8000/busybeaver/api/comments/Bull-Case-for-Reliance/`
+        fetch(`${API}/api/comments/Bull-Case-for-Reliance/`
         ,{method:"GET"})
         .then(function(response){
 
@@ -43,7 +43,6 @@ export const Comments = (prop) => {
             );
            })}
        <CommentField title={prop.title} setReload={setReload} reload={reload}/>
-
        </div>
     );
 }

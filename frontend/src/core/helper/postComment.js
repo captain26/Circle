@@ -1,9 +1,9 @@
-
+import {API} from "../../backend"
 
 export const addComment = (comment,title) => {
     console.log(comment);
     console.log(title);
-    return fetch(`http://127.0.0.1:8000/busybeaver/api/postdetails/${title}/`, {
+    return fetch(`${API}/api/postdetails/${title}/`, {
       method: "POST",
       headers: {
         "Accept": "application/json",

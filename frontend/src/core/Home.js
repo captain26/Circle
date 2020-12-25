@@ -4,6 +4,7 @@ import Base from "./Base.js"
 import { Card } from "./Card.js";
 import { FeedContent } from "./FeedContent.js";
 import {Comments} from "./getcomment";
+import {API} from "../backend"
 
 const _ = require("lodash");
 
@@ -41,7 +42,7 @@ export default function Home() {
   
 
   const getData=()=>{
-    fetch('http://127.0.0.1:8000/busybeaver/api/feed/'
+    fetch(`${API}/api/feed/`
     ,{method:"GET"})
     .then(function(response){
       // console.log(response.json());
