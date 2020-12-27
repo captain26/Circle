@@ -56,7 +56,7 @@ class Post (models.Model):
     key_insight_2 = models.CharField(max_length=200,blank=True)
     key_insight_3 = models.CharField(max_length=200,blank=True)
     content = models.TextField(blank=True)
-    pub_date = models.DateTimeField(default='')
+    pub_date = models.DateTimeField(auto_now_add=True)
     tag = models.ManyToManyField('Ticker')
     slug = models.SlugField(max_length=200, unique=False)
     sentiment = models.IntegerField(choices=Sentiment.choices)

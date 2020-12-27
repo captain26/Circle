@@ -2,10 +2,15 @@ from django.urls import include, path
 from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
-
+from knox import views as knox_views
 from . import views
 
 urlpatterns = [
+    path('api/auth', include('knox.urls')),
+    path('api/auth/register', views.RegisterAPIView.as_view()),
+    path('api/auth/login', views.LoginAPIView.as_view()),
+    path('api/auth/user', views.UserAPIView.as_view()),
+    path('api/auth/logout', knox_views.LogoutView.as_view(), name='knox_logout'),
     path('api/companies/', views.api_companies, name = 'api_companies'),
     path('api/tickers/', views.api_tickers, name = 'api_tickers'),
     path('home/', views.home, name='home'),
@@ -17,6 +22,7 @@ urlpatterns = [
     path('api/comments/<slug:slug>/', views.api_comments, name = 'api_comments'),
     path('profile/<str:userid>/', views.profile, name = 'profile_page'),
     path('createpost/', views.createpost, name = 'create_post'),
+    path('api/createpost/', views.api_createpost, name = 'api_create_post'),
     path('postdetails/<slug:slug>/', views.post_detail, name = 'post_detail'),
     path('api/postdetails/<slug:slug>/', views.api_post_detail, name = 'api_post_detail'),
     path('register/', views.register, name = 'register'),

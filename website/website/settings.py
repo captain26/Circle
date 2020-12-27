@@ -40,8 +40,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'busybeaver.apps.BusybeaverConfig',
-    'corsheaders'
+    'corsheaders',
+    'knox',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (  # added
+        'knox.auth.TokenAuthentication',
+    ),
+}
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',

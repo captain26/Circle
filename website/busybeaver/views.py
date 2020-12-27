@@ -9,13 +9,49 @@ from django.http import HttpResponseRedirect
 from django import forms
 from django.http import JsonResponse
 from rest_framework.response import Response 
-from . serializers import PostSerializer, CommentSerializer, CompanySerializer, TickerSerializer
+from . serializers import PostSerializer, CreatePostSerializer, CommentSerializer, CompanySerializer, TickerSerializer
 from rest_framework.decorators import api_view
 from rest_framework import status
 from django.http import Http404
+from rest_framework import generics, permissions
+from knox.models import AuthToken
+from .serializers import UserSerializer, RegisterSerializer, LoginSerializer
 
 
+class RegisterAPIView(generics.GenericAPIView):
+    serializer_class = RegisterSerializer
 
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.save()
+        return Response({
+            "user": UserSerializer(user, context=self.get_serializer_context()).data,
+            "token": AuthToken.objects.create(user)[1]
+        })
+
+class LoginAPIView(generics.GenericAPIView):
+    serializer_class = LoginSerializer
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.validated_data
+        return Response({
+            "user": UserSerializer(user, context=self.get_serializer_context()).data,
+            "token": AuthToken.objects.create(user)[1]
+        })
+
+class UserAPIView(generics.RetrieveAPIView):
+    permission_classes = [
+        permissions.IsAuthenticated,
+    ]
+    serializer_class = UserSerializer
+
+    def get_object(self):
+        return self.request.user
+
+    
 @api_view(['GET'])
 def api_companies(request):
     companies = Company.objects.all()
@@ -116,7 +152,9 @@ def createpost(request):
                 # TODO: graceful redirection in error cases
                 raise forms.ValidationError('Looks like the data you entered is not valid')
                 return HttpResponseRedirect('/busybeaver/createpost')
-    
+
+
+#TODO : remove, obsolete coz of knox            
 def register(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
@@ -171,24 +209,12 @@ def post_detail(request, slug):
                                            'comments': comments,
                                            'new_comment': new_comment,
                                            'comment_form': comment_form})
-@api_view(['GET','POST'])
+@api_view(['GET'])
 def api_post_detail(request, slug):
     post = get_object_or_404(Post, slug=slug)
-    if request.method == 'POST':
-        serializer = CommentSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.validated_data['post'] = post
-            #disable authentication, always save as the first user TODO
-            for thisuser in UserProfile.objects.all():
-                serializer.validated_data['author'] = thisuser
-                break
-            serializer.save()
-            return Response(status=status.HTTP_201_CREATED)
-        return Response(status=status.HTTP_400_BAD_REQUEST)
-    elif request.method == 'GET':
-        data = post
-        serializer = PostSerializer(data)
-        return Response(serializer.data)
+    serializer = PostSerializer(post)
+    return Response(serializer.data)
+
 
 @api_view(['GET','POST'])
 def api_comments(request, slug):
@@ -211,6 +237,22 @@ def api_comments(request, slug):
         data = post.comments
         serializer = CommentSerializer(data, many=True)
         return Response(serializer.data)
+
+@api_view(['POST'])
+def api_createpost(request):
+    if request.method == 'POST':
+        serializer = CreatePostSerializer(data=request.data)
+        if serializer.is_valid():
+            #disable authentication, always save as the first user TODO
+            for thisuser in UserProfile.objects.all():
+                serializer.validated_data['author'] = thisuser
+                break
+            serializer.save()
+            return Response(status=status.HTTP_201_CREATED)
+        else:
+            print(serializer.errors)
+    return Response(status=status.HTTP_400_BAD_REQUEST)
+    
 
 def content_library(request):
     content_list=[]
