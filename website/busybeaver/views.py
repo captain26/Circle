@@ -247,6 +247,7 @@ def api_createpost(request):
             for thisuser in UserProfile.objects.all():
                 serializer.validated_data['author'] = thisuser
                 break
+            serializer.validated_data['slug'] = serializer.validated_data['title'].replace(' ', '-')
             serializer.save()
             return Response(status=status.HTTP_201_CREATED)
         else:
