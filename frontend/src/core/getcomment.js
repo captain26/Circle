@@ -15,7 +15,6 @@ export const Comments = (prop) => {
           return response.json();
         })
           .then(function(json) {
-          console.log(json);
           setComments(json);  
         });
     }

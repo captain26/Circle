@@ -16,7 +16,6 @@ export const CommentField = ({
       .then((data) => {
         if (error) {
         } else {
-          console.log(data);
           setComment("");
           setReload(!reload);
         }
@@ -27,7 +26,6 @@ export const CommentField = ({
 
   const handleChange = (event) => {
     setError("");
-    console.log(event.target.value);
     setComment(event.target.value);
   };
   return (

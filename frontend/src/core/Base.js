@@ -1,12 +1,12 @@
-import React from "react"
+import React, { Fragment } from "react"
 import "../styles.css"
 import { Link, withRouter } from "react-router-dom";
-
+import { isAuthenticated, signout } from "./helper/auth";
 
 
 const Base = ({
     className = "",
-    children
+    children, history
 }) =>{
     return (
 <div style={{backgroundColor:"#e1e1e1"}}>
@@ -17,6 +17,18 @@ const Base = ({
       <a href="/notification"><Link  to="/notification">Notification</Link></a>
       <a href="/notes"><Link to="/notes">Notes</Link></a>
       <a href="/profile"><Link   to="/profile">Profile</Link></a>
+      {isAuthenticated() && (
+        <a href="/dashboard"><Link   to="/dashboard">Dashboard</Link></a>
+      )}
+      {!isAuthenticated() && (
+        <Fragment>
+          <a href="/signup"><Link   to="/signup">Signup</Link></a>
+          <a href="/signin"><Link   to="/signin">Signin</Link></a>
+        </Fragment>
+      )}
+      {isAuthenticated() && (
+        <a href="/signout"><Link   to="/signout" onClick={() => { signout(() => {history.push("/");}); }}>Signout</Link></a>
+      )}
   </div>
   <div class="content row">
       <div className="text-center col-lg-10">

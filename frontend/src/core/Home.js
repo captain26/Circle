@@ -4,60 +4,51 @@ import Base from "./Base.js"
 import { Card } from "./Card.js";
 import { FeedContent } from "./FeedContent.js";
 import {Comments} from "./getcomment";
+import { createpost } from "./helper/createpost";
 
-const _ = require("lodash");
 
 export default function Home() {
   const [feeds, setData] = useState([]);
 
+  const [content, setContent] = useState("");
+  const [error, setError] = useState(false);
+  const [reload, setReload] = useState(false);
 
-  // addComment(comment).then(data => {
-  //   if (error) {
-  //     setError(true);
-  //   } else {
-  //     setComment("");
-  //     console.log(comment); 
-  //   }
-  // });
 
-  
-    
-  // const onSubmit = title => {
-  //   // event.preventDefault();
-  //   console.log(title);
-  //   addComment(comment,title)
-  //     .then(data => {
-  //       if (error) {
-          
-  //       } else {
-  //         console.log(data);
-  //         setComment("");
-  //       }
-  //       return 0;
-  //     })
-  //     .catch(console.log("Error in signup"));
-  // };
+  const onSubmit = (content) => {
+    // event.preventDefault();
+    createpost(content)
+      .then((data) => {
+        if (error) {
+        } else {
+          setContent("");
+          setReload(!reload);
+        }
+        return 0;
+      })
+      .catch(console.log("Error"));
+  };
 
+  const handleChange = (event) => {
+    setError("");
+    setContent(event.target.value);
+  };
   
 
   const getData=()=>{
     fetch('http://127.0.0.1:8000/busybeaver/api/feed/'
     ,{method:"GET"})
     .then(function(response){
-      // console.log(response.json());
       return response.json();
     })
       .then(function(json) {
-      console.log(json);
       setData(json);  
     });
     }
 
-    
-
     useEffect(() => {
       getData();
-    }, []);
+    }, [reload]);
     
   return (
     <div>
@@ -73,9 +64,9 @@ export default function Home() {
                 <img className="rounded-circle" style={{width: "50%"}} src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50" alt="profile"/>
               </div>
               <div className="col-lg-9" style={{textAlign:"left"}}>
-                <textarea placeholder="Feeling Bullish or Bearish"></textarea>
+                <textarea placeholder="Feeling Bullish or Bearish"  onChange={handleChange}   value={content}></textarea>
                 <div style={{height:"50px"}}>
-                <button type="button" class="btn" style={{backgroundColor:"#4d52b5", color:"white", borderRadius:"25px", padding:"10px 30px", fontWeight:"bold", letterSpacing:"1.5px", position:"absolute", right:"20px"}}>Post</button>
+                <button type="button" class="btn"  onClick={() => { onSubmit(content); }} style={{backgroundColor:"#4d52b5", color:"white", borderRadius:"25px", padding:"10px 30px", fontWeight:"bold", letterSpacing:"1.5px", position:"absolute", right:"20px"}}>Post</button>
                 </div>
               </div>
             </div>
