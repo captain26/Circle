@@ -54,9 +54,7 @@ export default function Home() {
     <div>
      <Base>
      <center>
-     <Card class="card w-50 p-2 my-2" borderRadius="30px">
-     <input placeholder="Search" style={{border: "none", outline:"0"}} type="text" id="search"></input>
-     </Card>  
+  
     
      <div class="card w-75 mb-5 my-5" style={{borderRadius:"15px"}}>
             <div className="row py-4" style={{paddingRight:"10px", paddingLeft:"10px"}}>
