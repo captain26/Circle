@@ -8,10 +8,11 @@ const Signin = () => {
   const [values, setValues] = useState({
     username: "",
     password: "",
+    error: "",
     didRedirect: false
   });
 
-  const { username, password, didRedirect } = values;
+  const { username, password, error, didRedirect } = values;
   const { user } = isAuthenticated();
 
   const handleChange = name => event => {
@@ -20,18 +21,38 @@ const Signin = () => {
 
   const onSubmit = event => {
     event.preventDefault();
-    setValues({ ...values});
+    setValues({ ...values, error: false});
     signin({ username, password })
-      .then(data => {
-          authenticate(data, () => {
+      .then(res => {
+        if (res[0] === 400) {
+          setValues({ ...values, error: res[1]});
+        } else {
+          authenticate(res[1], () => {
             setValues({
               ...values,
+              error: "",
               didRedirect: true
             });
           });
           console.log("signin success")
         }
+        }
       )
+  };
+
+  const errorMessage = () => {
+    return (
+      <div className="row">
+        <div className="col-md-6 offset-sm-3 text-left">
+          <div
+            className="alert alert-danger"
+            style={{ display: error.non_field_errors ? "" : "none" }}
+          >
+{error.non_field_errors}
+          </div>
+        </div>
+      </div>
+    );
   };
 
   const performRedirect = () => {
@@ -45,6 +66,7 @@ const Signin = () => {
 
   return (
     <Base>
+    {errorMessage()}
       <div className="row">
         <div className="col-md-6 offset-sm-3 text-left">
           <form>

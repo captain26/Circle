@@ -27,7 +27,7 @@ export default function Profile() {
      </div>
     </div>
     <section>
-      <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <ul class="nav nav-tabs" id="myTab" role="tablist" style={{padding:"0px 30px"}}>
         <li class="nav-item">
           <a class="nav-link active" id="posts-tab" data-toggle="tab" href="#posts" role="tab" aria-controls="posts" aria-selected="true">Posts</a>
         </li>
@@ -41,7 +41,7 @@ export default function Profile() {
           <a class="nav-link" id="activity-tab" data-toggle="tab" href="#activity" role="tab" aria-controls="activity" aria-selected="false">Activity</a>
         </li>
       </ul>
-      <div class="tab-content" id="myTabContent">
+      <div class="tab-content" id="myTabContent" style={{padding:"0px 30px"}}>
         <div class="tab-pane fade active show text-center" id="posts" role="tabpanel" aria-labelledby="posts-tab" style={{marginTop:"20px"}}>
         <Card class="card mb-5">
        <FeedContent

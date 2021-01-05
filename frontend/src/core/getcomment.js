@@ -11,11 +11,10 @@ export const Comments = (prop) => {
         fetch(`http://127.0.0.1:8000/busybeaver/api/comments/${prop.title}/`
         ,{method:"GET"})
         .then(function(response){
-
           return response.json();
         })
           .then(function(json) {
-          setComments(json);  
+          setComments(json); 
         });
     }
 
@@ -37,7 +36,6 @@ export const Comments = (prop) => {
                   <p style={{fontSize:"12px",marginBottom:"2px"}}>{comment.body}</p>
               </Card>
         </div>
-     
      </div>
             );
            })}

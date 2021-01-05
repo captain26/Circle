@@ -8,30 +8,37 @@ const Signup = () => {
     username: "",
     email: "",
     password: "",
+    error: "",
     success: false
   });
 
-  const { username, email, password, success} = values;
+  const { username, email, password, error, success} = values;
 
   const handleChange = username => event => {
-    setValues({ ...values, [username]: event.target.value });
+    setValues({ ...values,error: false, [username]: event.target.value });
   };
 
   const onSubmit = event => {
     event.preventDefault();
-    setValues({ ...values});
+    setValues({ ...values, error: false});
     signup({ username, email, password })
-      .then(data => {
+      .then(res => {
+        if (res[0] === 400) {
+          setValues({ ...values, error: res[1], success: false });
+        } else {
           setValues({
             ...values,
             username: "",
             email: "",
             password: "",
+            error: "",
             success: true
           });
         }
-      )
-      .catch(console.log("Error in signup"));
+      })
+      .catch(err => {
+        console.log(err);
+    })
   };
 
   const successMessage = () => {
@@ -50,9 +57,37 @@ const Signup = () => {
     );
   };
 
+  const errorMessage = () => {
+    return (
+      <div className="row">
+        <div className="col-md-6 offset-sm-3 text-left">
+          <div
+            className="alert alert-danger"
+            style={{ display: error.username ? "" : "none" }}
+          >
+{error.username}
+          </div>
+          <div
+            className="alert alert-danger"
+            style={{ display: error.email ? "" : "none" }}
+          >
+{error.email}
+          </div>
+          <div
+            className="alert alert-danger"
+            style={{ display: error.password ? "" : "none" }}
+          >
+{error.password}
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <Base>
     {successMessage()}
+    {errorMessage()}
     <div className="row">
         <div className="col-md-6 offset-sm-3 text-left">
           <form>

@@ -1,4 +1,5 @@
 export const signup = user => {
+
     return fetch(`http://127.0.0.1:8000/busybeaver/api/auth/register`, {
       method: "POST",
       headers: {
@@ -8,9 +9,13 @@ export const signup = user => {
       body: JSON.stringify(user)
     })
       .then(response => {
-        return response.json();
+        const statusCode = response.status;
+        const data = response.json();
+        return Promise.all([statusCode, data]);
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err);
+    })
   };
 
   export const signin = user => {
@@ -23,7 +28,9 @@ export const signup = user => {
       body: JSON.stringify(user)
     })
       .then(response => {
-        return response.json();
+        const statusCode = response.status;
+        const data = response.json();
+        return Promise.all([statusCode, data]);
       })
       .catch(err => console.log(err));
   };

@@ -10,18 +10,19 @@ import { createpost } from "./helper/createpost";
 export default function Home() {
   const [feeds, setData] = useState([]);
 
-  const [content, setContent] = useState("");
+  const [title, setTitle] = useState("");
   const [error, setError] = useState(false);
   const [reload, setReload] = useState(false);
 
 
-  const onSubmit = (content) => {
+  const onSubmit = (title) => {
     // event.preventDefault();
-    createpost(content)
+    createpost(title)
       .then((data) => {
         if (error) {
         } else {
-          setContent("");
+          setTitle("");
+          window.location.reload();
           setReload(!reload);
         }
         return 0;
@@ -31,7 +32,7 @@ export default function Home() {
 
   const handleChange = (event) => {
     setError("");
-    setContent(event.target.value);
+    setTitle(event.target.value);
   };
   
 
@@ -62,9 +63,9 @@ export default function Home() {
                 <img className="rounded-circle" style={{width: "50%"}} src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50" alt="profile"/>
               </div>
               <div className="col-lg-9" style={{textAlign:"left"}}>
-                <textarea placeholder="Feeling Bullish or Bearish"  onChange={handleChange}   value={content}></textarea>
+                <textarea placeholder="Feeling Bullish or Bearish"  onChange={handleChange}   value={title}></textarea>
                 <div style={{height:"50px"}}>
-                <button type="button" class="btn"  onClick={() => { onSubmit(content); }} style={{backgroundColor:"#4d52b5", color:"white", borderRadius:"25px", padding:"10px 30px", fontWeight:"bold", letterSpacing:"1.5px", position:"absolute", right:"20px"}}>Post</button>
+                <button type="button" class="btn"  onClick={() => { onSubmit(title); }} style={{backgroundColor:"#4d52b5", color:"white", borderRadius:"25px", padding:"10px 30px", fontWeight:"bold", letterSpacing:"1.5px", position:"absolute", right:"20px"}}>Post</button>
                 </div>
               </div>
             </div>
