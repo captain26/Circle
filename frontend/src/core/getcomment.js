@@ -1,14 +1,14 @@
 import React ,{useState,useEffect} from "react";
 import { Card } from "./Card";
 import { CommentField } from "./Postcomment.js";
-
+import {API} from "../backend";
 
 export const Comments = (prop) => {
     const [comments, setComments] = useState([]);
     const [reload, setReload] = useState(false);
 
     const getComments=()=>{
-        fetch(`http://127.0.0.1:8000/busybeaver/api/comments/${prop.title}/`
+        fetch(`${API}/api/comments/${prop.title}/`
         ,{method:"GET"})
         .then(function(response){
           return response.json();

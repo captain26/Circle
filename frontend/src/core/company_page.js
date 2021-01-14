@@ -1,6 +1,7 @@
 import React from "react"
-import Base from "../core/Base.js"
+import Base from "./Base.js"
 import {Line} from 'react-chartjs-2';
+import News from "./news.js";
 
 const yearState = {
   labels: ['', 'February', 'March',
@@ -162,8 +163,8 @@ export default function CompanyPage() {
       </ul>
     </div>
     
-    <h1 style={{margin:"20px auto", color:"#707070", width: "70%", textAlign:"left", marginTop: "70px"}}>About The Company</h1>
-    <div class="card" style={{padding:"10px", borderRadius:"10px", width:"70%", margin:"30px auto"}}>
+    <h1 style={{margin:"20px auto", color:"#707070", width: "80%", textAlign:"left", marginTop: "70px"}}>About The Company</h1>
+    <div class="card" style={{padding:"10px", borderRadius:"10px", width:"80%", margin:"30px auto"}}>
       <div class="card-body" style={{textAlign: "left"}}>
         <p class="card-text">Mahindra & Mahindra Ltd. is in Automobiles - Passenger Cars. It was incorporated in year 1945. The current market capitalization stands &#8377; 91,114 Cr. The company is listed on the Bombay Stock Exchange (BSE) with the BSE Code as 500520 and also listed on National STock Exchange (NSE) with NSE code as M&M.</p>
         <div class="row" style={{marginTop: "30px"}}>
@@ -183,8 +184,8 @@ export default function CompanyPage() {
       </div>
     </div>
 
-    <h1 style={{margin:"20px auto", color:"#707070", width: "70%", textAlign:"left", marginTop: "70px"}}>Company Statistics</h1>
-    <div class="card" style={{ borderRadius:"10px", width:"70%", margin:"30px auto"}}>
+    <h1 style={{margin:"20px auto", color:"#707070", width: "80%", textAlign:"left", marginTop: "70px"}}>Company Statistics</h1>
+    <div class="card" style={{ borderRadius:"10px", width:"80%", margin:"30px auto"}}>
     <div class="card-body" style={{textAlign: "left"}}>
         <div class="row">
           <div class="col-lg-3 col-md-6" style={{marginBottom: "20px"}}>
@@ -225,73 +226,12 @@ export default function CompanyPage() {
       </div>
     </div>
 
-    <h1 style={{margin:"20px auto", color:"#707070", width: "70%", textAlign:"left", marginTop: "70px"}}>Your Profile</h1>
-    <div class="card" style={{padding:"10px", borderRadius:"10px", width:"70%", height:"200px", margin:"30px auto"}}>
+    <h1 style={{margin:"20px auto", color:"#707070", width: "80%", textAlign:"left", marginTop: "70px"}}>Your Profile</h1>
+    <div class="card" style={{padding:"10px", borderRadius:"10px", width:"80%", height:"200px", margin:"30px auto"}}>
     </div>
     
-    <h1 style={{margin:"20px auto", color:"#707070", width: "70%",textAlign:"left", marginTop: "70px"}}>News from Circle Feed</h1>
-    <div class="card" style={{padding:"10px", borderRadius:"10px", width:"70%", height:"800px", margin:"30px auto", overflowY:"scroll"}}>
-        <div class="card mb-3" style={{padding:"10px", borderRadius:"10px", width:"90%", margin:"30px auto"}}>
-          
-          <div class="row no-gutters">
-            <div class="col-lg-4">
-              <img src="https://cdn.pixabay.com/photo/2020/11/24/22/46/prague-5774045_960_720.jpg" class="card-img" alt="pic" height="200px"/>
-            </div>  
-            <div class="col-lg-8">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card mb-3" style={{padding:"10px", borderRadius:"10px", width:"90%", margin:"30px auto"}}>
-          <div class="row no-gutters">
-            <div class="col-lg-4">
-              <img src="https://cdn.pixabay.com/photo/2019/08/03/18/24/bird-4382321_960_720.jpg" class="card-img" alt="pic" height="200px"/>
-            </div>  
-            <div class="col-lg-8">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card mb-3" style={{padding:"10px", borderRadius:"10px", width:"90%", margin:"30px auto"}}>
-          <div class="row no-gutters">
-            <div class="col-lg-4">
-              <img src="https://cdn.pixabay.com/photo/2019/08/03/18/24/bird-4382321_960_720.jpg" class="card-img" alt="pic" height="200px"/>
-            </div>  
-            <div class="col-lg-8">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card mb-3" style={{padding:"10px", borderRadius:"10px", width:"90%", margin:"30px auto"}}>
-          <div class="row no-gutters">
-            <div class="col-lg-4">
-              <img src="https://cdn.pixabay.com/photo/2019/08/03/18/24/bird-4382321_960_720.jpg" class="card-img" alt="pic" height="200px"/>
-            </div>  
-            <div class="col-lg-8">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-              </div>
-            </div>
-          </div>
-        </div>
-    </div>
+    <h1 style={{margin:"20px auto", color:"#707070", width: "80%",textAlign:"left", marginTop: "70px"}}>News from Circle Feed</h1>
+    <News/>
      </Base>
     </div>
   );

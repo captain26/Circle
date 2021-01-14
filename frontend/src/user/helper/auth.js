@@ -1,6 +1,8 @@
+import { API } from "../../backend";
+
 export const signup = user => {
 
-    return fetch(`http://127.0.0.1:8000/busybeaver/api/auth/register`, {
+    return fetch(`${API}/api/auth/register`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -19,7 +21,7 @@ export const signup = user => {
   };
 
   export const signin = user => {
-    return fetch(`http://127.0.0.1:8000/busybeaver/api/auth/login`, {
+    return fetch(`${API}/api/auth/login`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -43,7 +45,7 @@ export const signup = user => {
   };
 
   export const signout = next => {
-    return fetch(`http://127.0.0.1:8000/busybeaver/api/auth/logout`, {
+    return fetch(`${API}/api/auth/logout`, {
       method: "POST",
       headers: {
         Accept: "application/json",

@@ -1,14 +1,14 @@
 import React from "react-dom"
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import Explore from "./user/explore";
+import Explore from "./core/explore";
 import Home from "./core/Home";
-import Signup from "./core/Signup";
-import Signin from "./core/signin";
+import Signup from "./user/Signup";
+import Signin from "./user/signin";
 import Notes from "./user/Notes";
-import Notification from "./user/Notification";
+import Notification from "./core/Notification";
 import Profile from "./user/Profile";
-import Search from "./user/Search";
-import CompanyPage from "./company/company_page";
+import Search from "./core/Search";
+import CompanyPage from "./core/company_page";
 import PrivateRoute from "./core/PrivateRoutes";
 
 

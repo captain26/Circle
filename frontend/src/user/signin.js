@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Base from "./Base";
+import Base from "../core/Base";
 import { Redirect } from "react-router-dom";
 
 import { signin, authenticate, isAuthenticated } from "./helper/auth";
@@ -66,7 +66,6 @@ const Signin = () => {
 
   return (
     <Base>
-    <div style={{marginTop:"30px"}}>
     {errorMessage()}
       <div className="row">
         <div className="col-md-6 offset-sm-3 text-left">
@@ -96,8 +95,7 @@ const Signin = () => {
           </form>
         </div>
       </div>
-    </div>
-    {performRedirect()}
+      {performRedirect()}
     </Base>
   );
 };

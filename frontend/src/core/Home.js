@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react"
+import { API } from "../backend.js";
 import Base from "./Base.js"
 // import "../styles.css"; 
 import { Card } from "./Card.js";
@@ -6,18 +7,24 @@ import { FeedContent } from "./FeedContent.js";
 import {Comments} from "./getcomment";
 import { createpost } from "./helper/createpost";
 
-
 export default function Home() {
   const [feeds, setData] = useState([]);
 
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState({
+    tit: "",
+    cont: ""
+  });
+  
   const [error, setError] = useState(false);
   const [reload, setReload] = useState(false);
 
 
-  const onSubmit = (title) => {
+
+  const {tit,cont} = title;
+
+  const onSubmit = event => {
     // event.preventDefault();
-    createpost(title)
+    createpost(tit,cont)
       .then((data) => {
         if (error) {
         } else {
@@ -30,14 +37,15 @@ export default function Home() {
       .catch(console.log("Error"));
   };
 
-  const handleChange = (event) => {
+  const handleChange = name => event => {
     setError("");
-    setTitle(event.target.value);
+    setTitle({...title, [name] : event.target.value});
+    console.log(event.target.value);
   };
   
 
   const getData=()=>{
-    fetch('http://127.0.0.1:8000/busybeaver/api/feed/'
+    fetch(`${API}/api/feed/`
     ,{method:"GET"})
     .then(function(response){
       return response.json();
@@ -63,9 +71,10 @@ export default function Home() {
                 <img className="rounded-circle" style={{width: "50%"}} src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50" alt="profile"/>
               </div>
               <div className="col-lg-9" style={{textAlign:"left"}}>
-                <textarea placeholder="Feeling Bullish or Bearish"  onChange={handleChange}   value={title}></textarea>
+                <input type="text" placeholder="Title" onChange={handleChange("tit")} style={{border: "none", outline:"0",width:"auto"}}/>
+                <textarea placeholder="Feeling Bullish or Bearish"  onChange={handleChange("cont")}></textarea>
                 <div style={{height:"50px"}}>
-                <button type="button" class="btn"  onClick={() => { onSubmit(title); }} style={{backgroundColor:"#4d52b5", color:"white", borderRadius:"25px", padding:"10px 30px", fontWeight:"bold", letterSpacing:"1.5px", position:"absolute", right:"20px"}}>Post</button>
+                <button type="button" class="btn"  onClick={onSubmit} style={{backgroundColor:"#4d52b5", color:"white", borderRadius:"25px", padding:"10px 30px", fontWeight:"bold", letterSpacing:"1.5px", position:"absolute", right:"20px"}}>Post</button>
                 </div>
               </div>
             </div>

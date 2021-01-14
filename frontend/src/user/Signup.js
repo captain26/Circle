@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { signup } from "./helper/auth";
-import Base from "./Base.js";
+import Base from "../core/Base.js";
 import { Link } from "react-router-dom";
 
 const Signup = () => {
@@ -86,7 +86,6 @@ const Signup = () => {
 
   return (
     <Base>
-    <div style={{marginTop:"30px"}}>
     {successMessage()}
     {errorMessage()}
     <div className="row">
@@ -125,7 +124,6 @@ const Signup = () => {
             </button>
           </form>
         </div>
-      </div>
       </div>
       </Base>
   );
