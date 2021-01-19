@@ -2,98 +2,103 @@ import React, { Component, useState, createRef, useEffect } from "react";
 
 import "./chatContent.css";
 import Avatar from "../chatList/Avatar";
-import ChatItem from "./ChatItem";
+import WebSocketInstance from "../../services/WebSocket"
 
 export default class ChatContent extends Component {
-  messagesEndRef = createRef(null);
-  chatItms = [
-    {
-      key: 1,
-      image:
-        "https://pbs.twimg.com/profile_images/1116431270697766912/-NfnQHvh_400x400.jpg",
-      type: "",
-      msg: "Hi Tim, How are you?",
-    },
-    {
-      key: 2,
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTA78Na63ws7B7EAWYgTr9BxhX_Z8oLa1nvOA&usqp=CAU",
-      type: "other",
-      msg: "I am fine.",
-    },
-    {
-      key: 3,
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTA78Na63ws7B7EAWYgTr9BxhX_Z8oLa1nvOA&usqp=CAU",
-      type: "other",
-      msg: "What about you?",
-    },
-    {
-      key: 4,
-      image:
-        "https://pbs.twimg.com/profile_images/1116431270697766912/-NfnQHvh_400x400.jpg",
-      type: "",
-      msg: "Awesome these days.",
-    },
-    {
-      key: 5,
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTA78Na63ws7B7EAWYgTr9BxhX_Z8oLa1nvOA&usqp=CAU",
-      type: "other",
-      msg: "Finally. What's the plan?",
-    },
-    {
-      key: 6,
-      image:
-        "https://pbs.twimg.com/profile_images/1116431270697766912/-NfnQHvh_400x400.jpg",
-      type: "",
-      msg: "what plan mate?",
-    },
-    {
-      key: 7,
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTA78Na63ws7B7EAWYgTr9BxhX_Z8oLa1nvOA&usqp=CAU",
-      type: "other",
-      msg: "I'm taliking about the tutorial",
-    },
-  ];
+
+
+
 
   constructor(props) {
     super(props);
-    this.state = {
-      chat: this.chatItms,
-      msg: "",
+    this.state = {}
+    this.waitForSocketConnection(() => {
+      WebSocketInstance.addCallbacks(this.setMessages.bind(this), this.addMessage.bind(this))
+      WebSocketInstance.fetchMessages(this.props.currentUser);
+    });
+}
+
+waitForSocketConnection(callback) {
+    const component = this;
+    setTimeout(
+        function () {
+        if (WebSocketInstance.state() === 1) {
+            console.log("Connection is made")
+            callback();
+            return;
+        } else {
+            console.log("wait for connection...")
+            component.waitForSocketConnection(callback);
+        }
+    }, 100);
+}
+
+addMessage(message) {
+    this.setState({ messages: [...this.state.messages, message]});
+}
+
+setMessages(messages) {
+    this.setState({ messages: messages.reverse()});
+}
+
+messageChangeHandler = (event) =>  {
+    this.setState({
+        message: event.target.value
+    })
+}
+
+sendMessageHandler = (e) => {
+  const currentUser = JSON.parse(localStorage.getItem("user")).user.username;
+    e.preventDefault();
+    const messageObject = {
+        from: currentUser,
+        content: this.state.message,
     };
+    WebSocketInstance.newChatMessage(messageObject);
+    this.setState({
+        message: ''
+    });
+}
+
+renderMessages = (messages) => {
+    const currentUser = JSON.parse(localStorage.getItem("user")).user.username;
+    console.log(currentUser);
+    return messages.map((message, i) => (
+      <div
+      style={{ animationDelay: `0.8s` }}
+      className={`chat__item ${currentUser === message.author ? 'me': 'other'}`}
+    >
+      {console.log(message.author)}
+      <div className="chat__item__content">
+        <div className="chat__msg">{message.content}</div>
+        <div className="chat__meta">
+          <span>{Math.round((new Date().getTime() - new Date(message.timestamp).getTime())/60000)} minutes ago</span>
+        </div>
+      </div>
+      <Avatar isOnline="active" image="http://emilcarlsson.se/assets/mikeross.png" />
+    </div>
+    ));
+}
+
+  messagesEndRef = createRef(null);
+
+  componentDidMount() {
+    this.scrollToBottom();
+  }
+
+  componentDidUpdate() {
+    this.scrollToBottom();
   }
 
   scrollToBottom = () => {
     this.messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
   };
 
-  componentDidMount() {
-    window.addEventListener("keydown", (e) => {
-      if (e.keyCode == 13) {
-        if (this.state.msg != "") {
-          this.chatItms.push({
-            key: 1,
-            type: "",
-            msg: this.state.msg,
-            image:
-              "https://pbs.twimg.com/profile_images/1116431270697766912/-NfnQHvh_400x400.jpg",
-          });
-          this.setState({ chat: [...this.chatItms] });
-          this.scrollToBottom();
-          this.setState({ msg: "" });
-        }
-      }
-    });
-    this.scrollToBottom();
-  }
-  onStateChange = (e) => {
-    this.setState({ msg: e.target.value });
-  };
-
   render() {
+
+    const messages = this.state.messages;
+    const username = JSON.parse(localStorage.getItem("user")).user.username;
+
     return (
       <div className="main__chatcontent">
         <div className="content__header">
@@ -103,7 +108,7 @@ export default class ChatContent extends Component {
                 isOnline="active"
                 image="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTA78Na63ws7B7EAWYgTr9BxhX_Z8oLa1nvOA&usqp=CAU"
               />
-              <p>Tim Hover</p>
+              <p>{username}</p>
             </div>
           </div>
 
@@ -117,21 +122,12 @@ export default class ChatContent extends Component {
         </div>
         <div className="content__body">
           <div className="chat__items">
-            {this.state.chat.map((itm, index) => {
-              return (
-                <ChatItem
-                  animationDelay={index + 2}
-                  key={itm.key}
-                  user={itm.type ? itm.type : "me"}
-                  msg={itm.msg}
-                  image={itm.image}
-                />
-              );
-            })}
+            { messages &&  this.renderMessages(messages) }
             <div ref={this.messagesEndRef} />
           </div>
         </div>
         <div className="content__footer">
+          <form onSubmit={this.sendMessageHandler}>
           <div className="sendNewMessage">
             <button className="addFiles">
               <i className="fa fa-plus"></i>
@@ -139,13 +135,16 @@ export default class ChatContent extends Component {
             <input
               type="text"
               placeholder="Type a message here"
-              onChange={this.onStateChange}
-              value={this.state.msg}
+              onChange={this.messageChangeHandler}
+              value={this.state.message}
+              required 
+              id="chat-message-input" 
             />
-            <button className="btnSendMsg" id="sendMsgBtn">
+            <button id="chat-message-submit" className="submit">
               <i className="fa fa-paper-plane"></i>
             </button>
           </div>
+          </form>
         </div>
       </div>
     );

@@ -3,7 +3,6 @@ import "../styles.css"
 import { Link, withRouter } from "react-router-dom";
 import { isAuthenticated, signout } from "../user/helper/auth";
 
-
 const Base = ({
     className = "",
     children, history

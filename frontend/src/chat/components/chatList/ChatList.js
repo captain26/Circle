@@ -67,22 +67,7 @@ export default class ChatList extends Component {
       name: "Autumn Mckee",
       active: false,
       isOnline: false,
-    },
-    {
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSM6p4C6imkewkCDW-9QrpV-MMAhOC7GnJcIQ&usqp=CAU",
-      id: 9,
-      name: "Allen Woodley",
-      active: false,
-      isOnline: true,
-    },
-    {
-      image: "https://pbs.twimg.com/profile_images/770394499/female.png",
-      id: 10,
-      name: "Manpreet David",
-      active: false,
-      isOnline: true,
-    },
+    }
   ];
   constructor(props) {
     super(props);
@@ -95,7 +80,7 @@ export default class ChatList extends Component {
       <div className="main__chatlist">
         <button className="btn">
           <i className="fa fa-plus"></i>
-          <span>New conversation</span>
+          <span>  New conversation</span>
         </button>
         <div className="chatlist__heading">
           <h2>Chats</h2>

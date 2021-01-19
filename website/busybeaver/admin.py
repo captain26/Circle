@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Ticker, Company, Price, Post, UserProfile, Connection, Comment, Learn, Watchlist, Portfolio, StockDetails, News
+from .models import Ticker, Company, Price, Post, UserProfile, Connection, Comment, Learn, Watchlist, Portfolio, StockDetails, News, Message
 
 admin.site.register(Ticker)
 admin.site.register(Company)
@@ -14,6 +14,7 @@ admin.site.register(Portfolio)
 admin.site.register(StockDetails)
 admin.site.register(News)
 admin.site.register(Comment)
+admin.site.register(Message)
 #@admin.register(Comment)
 
 
