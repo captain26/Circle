@@ -6,7 +6,6 @@ import { Card } from "./Card.js";
 import { FeedContent } from "./FeedContent.js";
 import {Comments} from "./getcomment";
 import { createpost } from "./helper/createpost";
-import Watchlist from "./watchlist";
 
 export default function Home() {
   const [feeds, setData] = useState([]);
@@ -64,11 +63,9 @@ export default function Home() {
     <div>
      <Base>
      <center>
-  <div class="row">
-    <div class="col-lg-9">
-
-
-    <div class="card w-75 mb-5 my-4" style={{borderRadius:"15px"}}>
+  
+    
+     <div class="card w-75 mb-5 my-5" style={{borderRadius:"15px"}}>
             <div className="row py-4" style={{paddingRight:"10px", paddingLeft:"10px"}}>
               <div className="col-lg-3">
                 <img className="rounded-circle" style={{width: "50%"}} src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50" alt="profile"/>
@@ -104,10 +101,7 @@ export default function Home() {
        );
      })}
     </div>
-  </div>
-  <Watchlist/>
-  </div>
-
+     
      </center>
     
      </Base>

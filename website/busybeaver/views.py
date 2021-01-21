@@ -5,15 +5,12 @@ from django.shortcuts import render,get_object_or_404
 from .forms import CommentForm, UserRegistrationForm, PostForm, PostForm_new
 from django.views import generic
 from django.contrib.auth import authenticate, login
-import json
-from django.contrib.auth.decorators import login_required
-from django.utils.safestring import mark_safe
 from django.http import HttpResponseRedirect
 from django import forms
 from django.http import JsonResponse
 from rest_framework.response import Response 
 from . serializers import PostSerializer, CreatePostSerializer, CommentSerializer, CompanySerializer, TickerSerializer
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework import status
 from django.http import Http404
 from rest_framework import generics, permissions
@@ -67,15 +64,6 @@ def api_tickers(request):
     serializer = TickerSerializer(tickers, many=True)
     return Response(serializer.data)
 
-def chat(request):
-    return render(request, 'chat/index.html')
-
-@login_required
-def room(request, room_name):
-    return render(request, 'chat/room.html', {
-        'room_name_json': mark_safe(json.dumps(room_name)),
-        'username': mark_safe(json.dumps(request.user.username)),
-    })
 
 def index(request):
     return render(request, 'busybeaver/home.html')
@@ -229,6 +217,7 @@ def api_post_detail(request, slug):
 
 
 @api_view(['GET','POST'])
+# @permission_classes((permissions.IsAuthenticated,))
 def api_comments(request, slug):
     try:
         post = get_object_or_404(Post, slug=slug)
@@ -240,7 +229,8 @@ def api_comments(request, slug):
             serializer.validated_data['post'] = post
             #disable authentication, always save as the first user TODO
             for thisuser in UserProfile.objects.all():
-                serializer.validated_data['author'] = thisuser
+                if thisuser.user.username == request.user.username:
+                    serializer.validated_data['author'] = thisuser
                 break
             serializer.save()
             return Response(status=status.HTTP_201_CREATED)

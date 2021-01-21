@@ -38,7 +38,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
   user = UserSerializer(read_only=True)
   class Meta:
     model = UserProfile
-    fields = ('name', 'user')
+    fields = ('name', 'user', 'image')
       
 class PostSerializer(serializers.ModelSerializer):
   author = UserProfileSerializer(read_only=True)
@@ -58,10 +58,18 @@ class CreatePostSerializer(serializers.ModelSerializer):
 
 
 class CommentSerializer(serializers.ModelSerializer):
+  author = UserProfileSerializer(read_only=True)
   class Meta:
     model = Comment
-    fields = ('body',)
+    fields = ('body', 'author', 'created_on')
 
+class CommentPostSerializer(serializers.ModelSerializer):
+  author = UserProfileSerializer(read_only=True)
+  class Meta:
+    model = Comment
+    fields = ('body', 'author', 'created_on')
+
+    
 class CompanySerializer(serializers.ModelSerializer):
   class Meta:
     model = Company

@@ -5,7 +5,6 @@ import Home from "./core/Home";
 import Signup from "./user/Signup";
 import Signin from "./user/signin";
 import Notes from "./user/Notes";
-import Chat from "./chat/chat_main";
 import Notification from "./core/Notification";
 import Profile from "./user/Profile";
 import Search from "./core/Search";
@@ -22,7 +21,6 @@ const Routes = () => {
           <PrivateRoute path="/search" exact component={Search} />
           <PrivateRoute path="/notification" exact component={Notification} />
           <PrivateRoute path="/notes" exact component={Notes} />
-          <PrivateRoute path="/chat" exact component={Chat} />
           <PrivateRoute path="/profile" exact component={Profile} />
           <PrivateRoute path="/company_page" exact component={CompanyPage} />
           <Route path="/signup" exact component={Signup} />

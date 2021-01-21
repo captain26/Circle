@@ -3,7 +3,6 @@ import { API } from "../backend.js";
 import Base from "./Base.js"
 import { Card } from "./Card.js";
 import News from "./news.js";
-import Watchlist from "./watchlist";
 
 // import "../styles.css";
 
@@ -30,11 +29,7 @@ export default function Search() {
   return (
     <div>
      <Base>
-     <div class="row">
-       <div class="col-lg-9">
-
-
-       <center>
+     <center>
      <Card class="card w-50 p-2 my-2" borderRadius="30px">
      <input onChange={(event) => {
        setValue(event.target.value);
@@ -61,18 +56,15 @@ export default function Search() {
      }
      </Card>
      </center>
+     <div >
      <h1 style={{margin:"30px auto", color:"#707070", width: "80%",textAlign:"left"}}>News</h1>
    <News/>
      
     <h1 style={{margin:"50px auto", color:"#707070", width: "80%", textAlign:"left"}}>Themes</h1>
     <div class="card" style={{padding:"10px", borderRadius:"10px", width:"80%", height:"300px", margin:"30px auto"}}>
     </div>
-
-
-       </div>
-  <Watchlist/>
      </div>
-
+     
      </Base>
     </div>
   );

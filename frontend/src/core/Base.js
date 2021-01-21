@@ -2,6 +2,8 @@ import React, { Fragment } from "react"
 import "../styles.css"
 import { Link, withRouter } from "react-router-dom";
 import { isAuthenticated, signout } from "../user/helper/auth";
+import Watchlist from "./watchlist";
+
 
 const Base = ({
     className = "",
@@ -17,7 +19,6 @@ const Base = ({
       <a href="/search"><Link  to="/search">Search</Link></a>
       <a href="/notification"><Link  to="/notification">Notification</Link></a>
       <a href="/notes"><Link to="/notes">Notes</Link></a>
-      <a href="/notes"><Link to="/chat">Chat</Link></a>
       <a href="/profile"><Link   to="/profile">Profile</Link></a>
         </Fragment>
       )}
@@ -31,10 +32,11 @@ const Base = ({
         <a href="/signout"><Link   to="/signout" onClick={() => { signout(() => {history.push("/");}); }}>Signout</Link></a>
       )}
   </div>
-  <div class="content" style={{padding:"0px"}}>
-      <div className="text-center" style={{padding:"0px"}}>
+  <div class="content row" style={{padding:"0px"}}>
+      <div className="text-center col-lg-9" style={{padding:"0px"}}>
             <div className={className} style={{padding:"0px"}}>{children}</div>
       </div>
+      <Watchlist/>
   </div>
 </div>
     );

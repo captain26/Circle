@@ -6,8 +6,6 @@ from knox import views as knox_views
 from . import views
 
 urlpatterns = [
-    path('chat', views.chat, name='chat'),
-    path('chat/<str:room_name>/', views.room, name='room'), 
     path('api/auth', include('knox.urls')),
     path('api/auth/register', views.RegisterAPIView.as_view()),
     path('api/auth/login', views.LoginAPIView.as_view()),
