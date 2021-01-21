@@ -27,10 +27,10 @@ export default function Search() {
   
 
   return (
-    <div>
      <Base>
+    <div style={{paddingTop:"30px"}}>
      <center>
-     <Card class="card w-50 p-2 my-2" borderRadius="30px">
+     <Card class="card w-50 p-2" borderRadius="30px">
      <input onChange={(event) => {
        setValue(event.target.value);
      }} placeholder="Search" style={{border: "none", outline:"0"}} type="text" id="search"></input>
@@ -64,8 +64,7 @@ export default function Search() {
     <div class="card" style={{padding:"10px", borderRadius:"10px", width:"80%", height:"300px", margin:"30px auto"}}>
     </div>
      </div>
-     
+     </div>
      </Base>
-    </div>
   );
 }

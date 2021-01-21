@@ -86,6 +86,7 @@ const Signup = () => {
 
   return (
     <Base>
+    <div style={{paddingTop:"30px"}}>
     {successMessage()}
     {errorMessage()}
     <div className="row">
@@ -124,6 +125,7 @@ const Signup = () => {
             </button>
           </form>
         </div>
+      </div>
       </div>
       </Base>
   );

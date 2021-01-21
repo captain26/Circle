@@ -10,7 +10,7 @@ const Base = ({
     children, history
 }) =>{
     return (
-<div style={{backgroundColor:"#e1e1e1"}}>
+<div style={{backgroundColor:"#e1e1e1", paddingBottom:"20px", minHeight:"100vh"}}>
   <div className="sidebar">
       {isAuthenticated() && (
         <Fragment>
@@ -32,12 +32,10 @@ const Base = ({
         <a href="/signout"><Link   to="/signout" onClick={() => { signout(() => {history.push("/");}); }}>Signout</Link></a>
       )}
   </div>
-  <div class="content row" style={{padding:"0px"}}>
-      <div className="text-center col-lg-9" style={{padding:"0px"}}>
-            <div className={className} style={{padding:"0px"}}>{children}</div>
-      </div>
-      <Watchlist/>
+  <div class="content text-center">
+            <div className={className}>{children}</div>
   </div>
+  <Watchlist/>
 </div>
     );
 }

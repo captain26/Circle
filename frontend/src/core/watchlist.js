@@ -2,7 +2,7 @@ import React from "react"
 
 export default function Watchlist() {
   return (
-        <div className="right-panel col-lg-3">
+        <div className="right-panel">
        <center>
          <h3 style={{color:"white", marginTop:"20px", fontWeight:"bold", marginBottom:"20px"}}>Watchlist</h3>
          <hr style={{borderColor:"white", marginBottom:"30px"}}></hr>

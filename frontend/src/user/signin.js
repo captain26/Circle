@@ -66,6 +66,7 @@ const Signin = () => {
 
   return (
     <Base>
+    <div style={{paddingTop:"30px"}}>
     {errorMessage()}
       <div className="row">
         <div className="col-md-6 offset-sm-3 text-left">
@@ -96,6 +97,7 @@ const Signin = () => {
         </div>
       </div>
       {performRedirect()}
+      </div>
     </Base>
   );
 };
