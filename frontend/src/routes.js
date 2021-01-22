@@ -4,7 +4,7 @@ import Explore from "./core/explore";
 import Home from "./core/Home";
 import Signup from "./user/Signup";
 import Signin from "./user/signin";
-import Notes from "./user/Notes";
+import Notes from "./user/notes/App";
 import Notification from "./core/Notification";
 import Profile from "./user/Profile";
 import Search from "./core/Search";
