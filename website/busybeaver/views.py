@@ -217,7 +217,7 @@ def api_post_detail(request, slug):
 
 
 @api_view(['GET','POST'])
-# @permission_classes((permissions.IsAuthenticated,))
+@permission_classes((permissions.IsAuthenticated,))
 def api_comments(request, slug):
     try:
         post = get_object_or_404(Post, slug=slug)
@@ -227,10 +227,9 @@ def api_comments(request, slug):
         serializer = CommentSerializer(data=request.data)
         if serializer.is_valid():
             serializer.validated_data['post'] = post
-            #disable authentication, always save as the first user TODO
             for thisuser in UserProfile.objects.all():
-                if thisuser.user.username == request.user.username:
-                    serializer.validated_data['author'] = thisuser
+                # if thisuser.user.username == request.user.username:
+                serializer.validated_data['author'] = thisuser
                 break
             serializer.save()
             return Response(status=status.HTTP_201_CREATED)

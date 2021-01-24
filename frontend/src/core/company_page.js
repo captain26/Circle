@@ -2,6 +2,8 @@ import React from "react"
 import Base from "./Base.js"
 import {Line} from 'react-chartjs-2';
 import News from "./news.js";
+import Watchlist from "./watchlist";
+
 
 const yearState = {
   labels: ['', 'February', 'March',
@@ -69,6 +71,7 @@ const hourState = {
 export default function CompanyPage() {
   return (
      <Base>
+     <div className="content text-center">
      <div style={{paddingTop:"20px"}}>
      <h1 >Company Name</h1>
      <div style={{width:"70%", margin:"30px auto"}}>
@@ -233,6 +236,8 @@ export default function CompanyPage() {
     <h1 style={{margin:"20px auto", color:"#707070", width: "80%",textAlign:"left", marginTop: "70px"}}>News from Circle Feed</h1>
     <News/>
     </div>
+    </div>
+     <Watchlist/>
      </Base>
   );
 }

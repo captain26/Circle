@@ -9,13 +9,14 @@ export const Comments = (prop) => {
 
     const getComments=()=>{
         fetch(`${API}/api/comments/${prop.title}/`
-        ,{method:"GET"})
+        ,{method:"GET", headers: {
+          "Authorization": `Token ${JSON.parse(localStorage.getItem('user')).token}`
+        },})
         .then(function(response){
           // console.log(response.json());
           return response.json();
         })
         .then(function(json) {
-          console.log(json);
           setComments(json); 
         });
     }

@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react"
 import Base from "../core/Base.js"
 import { Card } from "../core/Card.js";
 import { FeedContent } from "../core/FeedContent.js";
+import Watchlist from "../core/watchlist.js"
 
 // import "../styles.css";
 
@@ -9,6 +10,7 @@ export default function Profile() {
   return (
 <div>
   <Base>
+  <div className="content text-center">
     <div className="row py-4" style={{paddingRight:"10px", paddingLeft:"10px"}}>
      <div className="col-lg-3">
        <img className="rounded-circle" style={{width: "50%", marginTop:"10px"}} src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50" alt="profile"/>
@@ -76,6 +78,8 @@ export default function Profile() {
       </div>
 
     </section>
+    </div>
+    <Watchlist/>
   </Base>
 </div>
   );

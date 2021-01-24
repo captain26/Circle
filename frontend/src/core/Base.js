@@ -2,13 +2,12 @@ import React, { Fragment } from "react"
 import "../styles.css"
 import { Link, withRouter } from "react-router-dom";
 import { isAuthenticated, signout } from "../user/helper/auth";
-import Watchlist from "./watchlist";
-
 
 const Base = ({
     className = "",
     children, history
 }) =>{
+
     return (
 <div style={{backgroundColor:"#e1e1e1", paddingBottom:"20px", minHeight:"100vh"}}>
   <div className="sidebar">
@@ -32,10 +31,7 @@ const Base = ({
         <a href="/signout"><Link   to="/signout" onClick={() => { signout(() => {history.push("/");}); }}>Signout</Link></a>
       )}
   </div>
-  <div class="content text-center">
-            <div className={className}>{children}</div>
-  </div>
-  <Watchlist/>
+      <div className={className}>{children}</div>
 </div>
     );
 }

@@ -34,6 +34,10 @@ div.content {
   margin-right: 300px;
 }
 
+div.contentwithoutwatchlist {
+  margin-left: 250px;
+}
+
 .card-content{
     text-align: left;
 }
@@ -125,6 +129,9 @@ textarea {
       margin-left: 14px;
     }
   div.content {
+    margin-left: 0;
+  }
+  div.contentwithoutwatchlist {
     margin-left: 0;
   }
 }

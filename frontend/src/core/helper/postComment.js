@@ -2,11 +2,10 @@ import {API} from "../../backend";
 
 
 export const addComment = (comment,title) => {
-    console.log(comment);
-    console.log(title);
     return fetch(`${API}/api/comments/${title}/`, {
       method: "POST",
       headers: {
+        "Authorization": `Token ${JSON.parse(localStorage.getItem('user')).token}`,
         "Accept": "application/json",
         "Content-Type": "application/json"
       },

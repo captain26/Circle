@@ -3,6 +3,8 @@ import { API } from "../backend.js";
 import Base from "./Base.js"
 import { Card } from "./Card.js";
 import News from "./news.js";
+import Watchlist from "./watchlist";
+
 
 // import "../styles.css";
 
@@ -28,6 +30,7 @@ export default function Search() {
 
   return (
      <Base>
+          <div className="content text-center">
     <div style={{paddingTop:"30px"}}>
      <center>
      <Card class="card w-50 p-2" borderRadius="30px">
@@ -65,6 +68,8 @@ export default function Search() {
     </div>
      </div>
      </div>
+     </div>
+     <Watchlist/>
      </Base>
   );
 }

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Base from "../core/Base";
 import { Redirect } from "react-router-dom";
+import Watchlist from "../core/watchlist"
+
 
 import { signin, authenticate, isAuthenticated } from "./helper/auth";
 
@@ -66,6 +68,7 @@ const Signin = () => {
 
   return (
     <Base>
+          <div className="content text-center">
     <div style={{paddingTop:"30px"}}>
     {errorMessage()}
       <div className="row">
@@ -98,6 +101,8 @@ const Signin = () => {
       </div>
       {performRedirect()}
       </div>
+      </div>
+      <Watchlist/>
     </Base>
   );
 };

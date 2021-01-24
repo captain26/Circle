@@ -8,7 +8,8 @@ function CreateArea(props) {
 
   const [note, setNote] = useState({
     title: "",
-    content: ""
+    content: "",
+    company:""
   });
 
   function handleChange(event) {
@@ -26,7 +27,8 @@ function CreateArea(props) {
     props.onAdd(note);
     setNote({
       title: "",
-      content: ""
+      content: "",
+      company:""
     });
     event.preventDefault();
   }
@@ -39,12 +41,22 @@ function CreateArea(props) {
     <div>
       <form className="create-note">
         {isExpanded && (
+          <div>
+          <label for="company" style={{marginRight:"10px"}}>Choose a company:</label> 
+          <select id="company" name="company" onChange={handleChange} value={note.company}>
+            <option value="">Select</option>
+            <option value="Reliance">Reliance</option>
+            <option value="Tesla">Tesla</option>
+            <option value="ACC">ACC</option>
+            <option value="WallMart">WallMart</option>
+          </select>
           <input
             name="title"
             onChange={handleChange}
             value={note.title}
             placeholder="Title"
           />
+          </div>
         )}
 
         <textarea

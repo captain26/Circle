@@ -3,23 +3,25 @@
   border-radius: 7px;
   box-shadow: 0 2px 5px #ccc;
   padding: 10px;
-  width: 240px;
+  width: 225px;
   margin: 16px;
   float: left;
+  height: 170px;
 }
 .note h1 {
   font-size: 1.1em;
   margin-bottom: 6px;
+  word-wrap: break-word;
 }
 .note p {
   font-size: 1.1em;
-  margin-bottom: 10px;
   white-space: pre-wrap;
   word-wrap: break-word;
 }
 
 .note button {
   position: relative;
+  bottom: 10px;
   float: right;
   margin-right: 10px;
   color: #4d52b5;
@@ -30,11 +32,30 @@
   outline: none;
 }
 
+.viewnote {
+  background: #fff;
+  border-radius: 7px;
+  box-shadow: 0 2px 5px #ccc;
+  padding: 10px;
+  width: 220px;
+  margin: 16px;
+}
+.viewnote h1 {
+  font-size: 1.1em;
+  font-weight: 700;
+  margin-bottom: 6px;
+  word-wrap: break-word;
+}
+.viewnote p {
+  font-size: 1.1em;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
 form.create-note {
   position: relative;
-  width: 480px;
-  margin: 30px auto 20px auto;
   background: #fff;
+  margin: 10px;
   padding: 15px;
   border-radius: 7px;
   box-shadow: 0 1px 5px rgb(138, 137, 137);

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { signup } from "./helper/auth";
 import Base from "../core/Base.js";
 import { Link } from "react-router-dom";
+import Watchlist from "../core/watchlist"
+
 
 const Signup = () => {
   const [values, setValues] = useState({
@@ -86,6 +88,8 @@ const Signup = () => {
 
   return (
     <Base>
+          <div className="content text-center">
+
     <div style={{paddingTop:"30px"}}>
     {successMessage()}
     {errorMessage()}
@@ -127,6 +131,8 @@ const Signup = () => {
         </div>
       </div>
       </div>
+      </div>
+      <Watchlist/>
       </Base>
   );
 };

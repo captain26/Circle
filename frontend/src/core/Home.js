@@ -6,7 +6,7 @@ import { Card } from "./Card.js";
 import { FeedContent } from "./FeedContent.js";
 import {Comments} from "./getcomment";
 import { createpost } from "./helper/createpost";
-import{Watchlist} from "./watchlist";
+import Watchlist from "./watchlist";
 
 export default function Home() {
   const [feeds, setData] = useState([]);
@@ -62,6 +62,7 @@ export default function Home() {
     
   return (
      <Base>
+     <div className="content text-center">
     <div style={{paddingTop:"50px"}}>
 
      <center>  
@@ -104,6 +105,8 @@ export default function Home() {
      
      </center>
      </div>    
+     </div>
+     <Watchlist/>
      </Base>
   );
 }
