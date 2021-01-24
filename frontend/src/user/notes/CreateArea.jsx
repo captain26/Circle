@@ -4,7 +4,6 @@ import Fab from "@material-ui/core/Fab";
 import Zoom from "@material-ui/core/Zoom";
 
 function CreateArea(props) {
-  const [isExpanded, setExpanded] = useState(false);
 
   const [note, setNote] = useState({
     title: "",
@@ -33,17 +32,13 @@ function CreateArea(props) {
     event.preventDefault();
   }
 
-  function expand() {
-    setExpanded(true);
-  }
 
   return (
     <div>
       <form className="create-note">
-        {isExpanded && (
           <div>
-          <label for="company" style={{marginRight:"10px"}}>Choose a company:</label> 
-          <select id="company" name="company" onChange={handleChange} value={note.company}>
+          <label for="company" style={{marginRight:"10px", fontWeight:"bold"}}>Choose a company:</label> 
+          <select id="company" name="company" onChange={handleChange} value={note.company} style={{width:"150px"}}>
             <option value="">Select</option>
             <option value="Reliance">Reliance</option>
             <option value="Tesla">Tesla</option>
@@ -57,21 +52,17 @@ function CreateArea(props) {
             placeholder="Title"
           />
           </div>
-        )}
 
         <textarea
           name="content"
-          onClick={expand}
           onChange={handleChange}
           value={note.content}
           placeholder="Take a note..."
-          rows={isExpanded ? 3 : 1}
+          rows= "3"
         />
-        <Zoom in={isExpanded}>
           <Fab onClick={submitNote}>
             <AddIcon />
           </Fab>
-        </Zoom>
       </form>
     </div>
   );

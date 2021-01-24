@@ -1,29 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
 import DeleteIcon from "@material-ui/icons/Delete";
-import Popup from 'reactjs-popup';
-import 'reactjs-popup/dist/index.css';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
+
 
 function Note(props) {
   function handleClick() {
     props.onDelete(props.id);
   }
 
-  return (
-    <center>
-      <Popup trigger={    <div className="note">
-      <h1>{props.title.substring(0, 19) + "..."}</h1>
-      <p>{props.content.substring(0, 60) + "..."}</p>
-      <button onClick={handleClick}>
-        <DeleteIcon />
-      </button>
-    </div>} position="right center" modal>
-      <center>
+  const [show, setShow] = useState(false);
+  
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  function Example() {
+  
+    return (
+      <>
+
+        <Modal show={show} onHide={handleClose}>
+          <center>
     <div className="viewnote">
       <h1>{props.title}</h1>
       <p>{props.content}</p>
     </div>
     </center>
-  </Popup>
+        </Modal>
+      </>
+    );
+  }
+
+  return (
+    <center>
+      <div className="note" onClick={handleShow}>
+      <h1>{props.title.length > 19 ? props.title.substring(0, 19) + "..." : props.title}</h1>
+      <p>{props.content.length > 50 ? props.content.substring(0, 50) + "..." : props.content}</p>
+      <button onClick={handleClick}>
+        <DeleteIcon />
+      </button>
+    </div>
+    {Example()}
+
   </center>
   );
 }

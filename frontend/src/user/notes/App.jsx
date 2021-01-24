@@ -27,7 +27,7 @@ export default function Notes() {
         <h2 className="text-center">NOTES</h2>
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
-          <a class="nav-link active" id="reliance-tab" data-toggle="tab" href="#reliance" role="tab"><button className="btn" type="button" style={{backgroundColor:"#4d52b5", color:"white", margin:"0px 10px"}}>Reliance</button></a>
+          <a class="nav-link active noteclass" id="reliance-tab" data-toggle="tab" href="#reliance" role="tab"><button className="btn" type="button" style={{backgroundColor:"#4d52b5", color:"white", margin:"0px 10px"}}>Reliance</button></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" id="tesla-tab" data-toggle="tab" href="#tesla" role="tab"><button className="btn" type="button" style={{backgroundColor:"#4d52b5", color:"white", margin:"0px 10px"}}>Tesla</button></a>
