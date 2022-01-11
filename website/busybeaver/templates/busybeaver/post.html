@@ -1,0 +1,48 @@
+{% if posts_list %}
+       {% for post in posts_list %}
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary" style="color:mediumblue;"> {{post.author.name}} <br>
+                        {% if post.sentiment > 0 %}
+                        {{ post.title }} <span style="color:green">(BULLISH)</span>
+                        {% else %}
+                        {{ post.title }} <span style="color:darkred">(BEARISH)</span>
+                        {% endif %}
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <p class="mb-0" style="color:black;font-family:arial">
+                    {{post.content|truncatechars:200}} <a href="/busybeaver/postdetails/{{post.slug}}" style="color:blue;">see more</a>
+                  </p>
+                  {% for tag in post.tag.all %}
+                        {% if post.sentiment > 0 %}
+                    <a href="/busybeaver/companydetails/{{tag}}" style="color:green;"><b>#{{tag}}</b></a>
+                        {% else %}
+                        <a href="/busybeaver/companydetails/{{tag}}" style="color:darkred;"><b>#{{tag}}</b></a>
+                        {% endif %}
+
+                  {% endfor %} <br>
+                  <a href="/busybeaver/postdetails/{{post.slug}}" style="color:blue;"> {{ post.comments.count }} comments </a>
+
+                  {% for comment in post.comments.all %}
+                            <div class="comments" style="padding: 10px;">
+                              <p class="font-weight-bold" style="color:darkblue;">
+                              {{ comment.author.name }}
+                              <span class=" text-muted font-weight-normal">
+                                {{ comment.created_on }}
+                              </span>
+                              </p>
+                                <span style="color:black;">{{ comment.body}} </span>
+                            </div>
+                  {% endfor %}
+                  <form action="/busybeaver/postdetails/{{post.slug}}/ " method="post" style="margin-top: 1.3em;">
+                      {{ comment_form.as_p }}
+                      {% csrf_token %}
+                      <button type="submit" class="btn btn-primary">Comment</button>
+                  </form>
+                </div>
+            </div>
+       {% endfor %}
+{% else %}
+    <p>No posts are available.</p>
+{% endif %}

@@ -1,0 +1,28 @@
+firewall allow https http   
+
+1) git pull repo
+2) ./scripts/launch.sh
+3) setup postgresql, gunicorn unix socket proxy, and nginx service config : https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu-16-04
+5) Change backend url in frontend/.env
+4) add tickers to database : ?
+5) sudo certbot --nginx -d example.com -d www.example.com
+
+
+
+Production files:
+/etc/nginx/sites-available/website
+/etc/systemd/system/gunicorn.service
+/etc/systemd/system/daphne.service
+website/website/settings.py
+frontend/.env
+
+Production commands:
+sudo nginx -t && sudo systemctl restart nginx
+sudo systemctl start gunicorn
+sudo systemctl enable gunicorn
+sudo systemctl start daphne
+sudo systemctl enable daphne
+
+# code update
+sudo systemctl restart gunicorn
+

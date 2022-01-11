@@ -1,0 +1,6 @@
+*~
+*.pyc
+*.swp
+staticfiles/
+*\.DS_Store
+db.sqlite3

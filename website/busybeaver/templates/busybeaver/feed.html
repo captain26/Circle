@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+  <link href="{%static 'css/feed.css' %}" rel="stylesheet">
+
+{% endblock %}
+
+{% block content %}
+
+  <a href = "/busybeaver/createpost/" type = "css" style="color:blue;"> Create Post </a>
+<p class = "dummy"> Hello </p>
+{% include 'busybeaver/post.html' %}
+
+{% if company %}
+
+  <p> {{ company.name }} </p>
+
+{% endif %}
+
+{% endblock %}
+
+
+
+

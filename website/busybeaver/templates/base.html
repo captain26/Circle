@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  {% block extra_css %}
+  {% endblock %}
+
+  <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
+  <link href="{%static 'css/feedstyle.css' %}" rel="stylesheet">
+
+
+  <title>Busybeaver</title>
+
+
+      <!-- Bootstrap core JavaScript-->
+  <script src="{%static 'vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{%static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+  <!-- Core plugin JavaScript -->
+  <script src="{%static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="{%static 'js/sb-admin-2.min.js' %}"></script>
+
+</head>
+
+  <main>
+    <nav style="color:black;">
+      <ul>
+        <li> <a href="/busybeaver/feed" > Home </a>
+        </li>
+        <li> <a href="/busybeaver/portfolio" > Portfolio </a>
+        </li>
+        <li> <a href="/busybeaver/companydetails"> Companies </a>
+        </li>
+        <li> <a href="/busybeaver/learn"> Learn </a>
+        </li>
+        <li> <a href="/busybeaver/{{username}}"> Profile </a>
+        </li>
+        <nav class="authenticate"></nav>
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'logout' %}">Logout</a></li>
+        {% else %}
+        <li><a href="{% url 'login' %}">Login</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+    <br>
+    <div style="margin-top: 0px; margin-left: 60px; margin-right: 60px;">
+      {% block content %}
+    {% endblock %}
+    </div>
+  </main>
+</body>
+</html>

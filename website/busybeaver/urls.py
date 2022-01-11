@@ -1,0 +1,57 @@
+from django.urls import include, path
+from django.contrib.auth import views as auth_views
+from django.conf import settings
+from django.conf.urls.static import static
+from knox import views as knox_views
+from . import views
+
+urlpatterns = [
+    path('api/auth', include('knox.urls')),
+    path('api/auth/register', views.RegisterAPIView.as_view()),
+    path('api/auth/login', views.LoginAPIView.as_view()),
+    path('api/auth/user', views.UserAPIView.as_view()),
+    path('api/auth/logout', knox_views.LogoutView.as_view(), name='knox_logout'),
+    path('api/userprofile/', views.api_userprofile, name='api_userprofile'),
+    path('api/companies/', views.api_companies, name = 'api_companies'),
+    path('api/companies/<str:ticker_id>/', views.api_companies, name = 'api_companies'),
+    path('api/valuations/<str:ticker_id>/', views.api_valuations, name = 'api_valuations'),
+    path('api/tickers/', views.api_tickers, name = 'api_tickers'),
+    path('api/userprofiles/', views.api_userprofiles, name = 'api_userprofiles'),
+    path('home/', views.home, name='home'),
+    path('', views.index, name='index'),
+    path('feed/', views.universal_feed, name='feed'),
+    path('feed/<str:ticker_id>/', views.universal_feed, name = 'ticker_feed'),
+    path('api/feed/', views.api_universal_feed, name='api_feed'),
+    path('api/feed/<str:ticker_id>/', views.api_universal_feed, name = 'api_ticker_feed'),
+    path('api/notes/', views.api_notes, name='api_notes'),
+    path('api/notes/<str:ticker_id>/', views.api_notes, name = 'api_ticker_notes'),
+    path('api/comments/<slug:slug>/', views.api_comments, name = 'api_comments'),
+    path('profile/<str:userid>/', views.profile, name = 'profile_page'),
+    path('createpost/', views.createpost, name = 'create_post'),
+    path('api/createpost/', views.api_createpost, name = 'api_create_post'),
+    path('postdetails/<slug:slug>/', views.post_detail, name = 'post_detail'),
+    path('api/postdetails/<slug:slug>/', views.api_post_detail, name = 'api_post_detail'),
+    path('api/user_posts/', views.api_user_posts, name='api_user_posts'),
+    path('api/user_activity/', views.api_user_activity, name='api_user_activity'),
+    path('register/', views.register, name = 'register'),
+    path('companydetails/', views.company_list, name = 'company_list'),
+    path('companydetails/<str:ticker_id>/', views.company_details, name = 'company_page'),
+    path('learn/', views.content_library, name='learn'),
+    path('watchlist/', views.watchlist, name ='watchlist'),
+    path('portfolio/', views.portfolio, name = 'portfolio'),
+    path('api/portfolio/', views.api_portfolio, name = 'api_portfolio'),
+    path('api/watchlist/', views.api_watchlist, name = 'api_watchlist'),
+    path('api/iswatching/', views.api_iswatching, name = 'api_iswatching'),
+    path('api/watchers/', views.api_watchers, name = 'api_watchers'),
+    path('api/followers/', views.api_followers, name = 'api_followers'),
+    path('api/following/', views.api_following, name = 'api_following'),
+    path('api/follow/', views.api_follow, name = 'api_follow'),
+    path('api/unfollow/', views.api_unfollow, name = 'api_unfollow'),
+    path('api/isfollowing/', views.api_isfollowing, name = 'api_isfollowing'),
+    path('api/companies_notes/', views.api_companies_notes, name = 'api_companies_notes'),
+    path('api/company_holders/', views.api_company_holders, name = 'api_company_holders'),
+    path('api/kite_tickers/', views.api_kite_tickers, name='api_kite_tickers'),
+    path('api/ltp/', views.api_ltp, name = 'api_ltp'),
+    path('api/value/', views.api_value, name = 'api_value'),
+
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -1,0 +1,163 @@
+a:hover{
+ color: black;
+ opacity: 0.65;
+ text-decoration: none;
+}
+a{
+  color: black;
+}
+
+.sidebar {
+  margin: 0;
+  padding-top: 20px;
+  width: 250px;
+  background-color: #4d52b5;
+  position: fixed;
+  height: 100%; 
+  overflow: auto;
+}
+
+.right-panel {
+  display: block;
+  position: fixed;
+  padding: 10px 0px;
+  width: 300px;
+  max-height: 600px;
+  right: 20px;
+  top: 50px;
+  border-radius: 10px;
+  overflow-y: scroll;
+}
+
+.sidebar a {
+  display: block;
+  color: white;
+  font-size: 1.3rem;
+  font-weight: 600;
+  padding-bottom: 10px;
+  margin-left: 30px;
+  text-decoration: none;
+}
+
+div.content {
+  margin-left: 250px;
+  margin-right: 300px;
+}
+
+div.contentwithoutwatchlist {
+  margin-left: 250px;
+}
+
+.card-content {
+  text-align: left;
+}
+
+li.ac ive {
+  background-color: red;
+}
+
+.card {
+  box-shadow: 10px 22px 90px -26px rgba(0, 0, 0, 0.66);
+}
+
+body{
+  /* font-family:"Montserrat"; */
+  /* font-family: 'Raleway', sans-serif; */
+  font-family: "Poppins", sans-serif;
+}
+
+.nav-tabs > li > a {
+  color: black;
+}
+
+textarea {
+  border: none;
+  overflow: auto;
+  font-size: 20px;
+  outline: none;
+  width: 100%;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  resize: none; /*remove the resize handle on the bottom right*/
+}
+
+.inputfield {
+  width: 80%;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #f0f2f5;
+  outline: 0px;
+
+  border: none;
+}
+.sendicon {
+  background-color: transparent;
+  border: none;
+}
+/* .sendicon:hover{
+background-color: #e4e6e9;
+border-radius: 50%;
+padding: 10px;
+padding-top: 12px;
+padding-bottom: 12px;
+}  */
+
+@media screen and (max-width: 1300px) {
+  .right-panel {
+    display: none;
+  }
+  div.content {
+    margin-right: 0;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .card-content {
+    text-align: left;
+    margin-top: 10px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {
+    float: left;
+    font-size: 1rem;
+    margin-left: 14px;
+  }
+  div.content {
+    margin-left: 0;
+  }
+  div.contentwithoutwatchlist {
+    margin-left: 0;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
+}
+
+.shape {
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+}
+
+.showFollowLink:hover{
+  color: black;
+  opacity: 0.65;
+}
+.showFollowLink {
+  /* background-color: white; */
+
+  
+  padding: 10px;
+}

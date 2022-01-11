@@ -1,0 +1,53 @@
+api/user_posts
+    GET     params : username(optional)
+api/user_activity
+    GET     params : username(optional)
+    POST    data : slug, reaction_type
+    DELETE  data : slug
+api/postdetails/<slug:slug>/
+    GET
+    PUT     data: title(optional), content(optional), tag(optional)
+    DELETE
+api/portfolio
+    GET     params : username(optional)
+    POST    data: [{ticker_id, units(optional), purchase_price(optional)}, ...]
+    PUT     data: ticker_id, units(optional), purchase_price(optional)
+    DELETE  data: ticker_id
+api/watchlist
+    GET     params : username(optional)
+    POST    data: [{ticker_id, units(optional), purchase_price(optional)}, ...]
+    DELETE  data : ticker_id
+api/iswatching
+    POST    data : ticker_id
+api/watchers
+    GET     params: ticker_id
+api/followers
+    GET     params : username(optional)
+api/following
+    GET     params : username(optional)
+api/follow
+     POST   data : user_id
+api/unfollow
+     DELETE data : user_id
+api/isfollowing
+     POST   data : user_id
+api/userprofile
+    GET     params : username(optional)
+    POST    data : name, bio(optional), image(optional)
+    PUT     data : name(optioanl), bio(optional), image(optional)
+api/companies_notes
+    GET
+api/userprofiles
+    GET
+api/company_holders
+    GET     params: ticker_id
+api/companies/
+    GET     
+api/companies/<str:ticker_id>
+    GET     
+api/valuations/<str:ticker_id>
+    GET     
+api/ltp/
+    POST    data: [ticker_id1, ticker_id2, ticker_id3 ....]
+api/value/
+    GET

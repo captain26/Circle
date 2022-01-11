@@ -1,0 +1,100 @@
+.note {
+  position: relative;
+  background: #fff;
+  border-radius: 7px;
+  box-shadow: 0 2px 5px #ccc;
+  padding: 10px;
+  width: 225px;
+  height: 200px;
+  margin: 16px;
+  float: left;
+}
+.note h1 {
+  font-size: 1.1em;
+  font-weight: 700;
+  margin-bottom: 6px;
+  word-wrap: break-word;
+}
+.note p {
+  font-size: 1.1em;
+  word-wrap: break-word;
+}
+
+.note .delete {
+  position: absolute;
+  bottom: 10px;
+  right: 12px;
+  color: #4d52b5;
+  border: none;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  outline: none;
+}
+
+.note .edit {
+  position: absolute;
+  bottom: 10px;
+  left: 12px;
+  color: #4d52b5;
+  border: none;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  outline: none;
+}
+
+.viewnote {
+  background: #fff;
+  border-radius: 7px;
+  box-shadow: 0 2px 5px #ccc;
+  padding: 10px;
+  margin: 16px;
+}
+.viewnote h1 {
+  font-size: 1.1em;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.viewnote p {
+  font-size: 1.1em;
+}
+
+form.create-note, form.edit-note {
+  position: relative;
+  background: #fff;
+  margin: 10px;
+  padding: 15px;
+  border-radius: 7px;
+  box-shadow: 0 1px 5px rgb(138, 137, 137);
+}
+form.create-note input,
+form.create-note textarea, form.edit-note input, form.edit-note textarea {
+  width: 100%;
+  border: none;
+  padding: 4px;
+  outline: none;
+  font-size: 1.2em;
+  font-family: inherit;
+  resize: none;
+}
+form.create-note button, form.edit-note button {
+  position: absolute;
+  right: 18px;
+  bottom: -18px;
+  background: #4d52b5;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  outline: none;
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+  color: #495057;
+  background-color:transparent;
+  border-color: transparent;
+}

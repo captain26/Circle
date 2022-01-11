@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %} Video Library {% endblock %}
+
+{% block content %}
+
+<h1> Video Library </h1>
+<br>
+
+{% for content in content_list %}
+
+<p style="color:black;"> <b>{{content.title}}</b> </p>
+<p> {{content.main_speaker}} </p>
+<iframe width="560" height="315" src= '{{content.video_url}}' frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<br>
+<p> {{content.summary}} </p>
+
+{% endfor %}
+
+{% endblock %}
